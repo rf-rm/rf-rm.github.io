@@ -1,0 +1,1843 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="rf-rm Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>2. Cinder Disk Work Flow - rf-rm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#moi_quan_he_giua_instance_va_disk" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="rf-rm" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                rf-rm
+              </span>
+              <span class="md-header-nav__topic">
+                2. Cinder Disk Work Flow
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="rf-rm" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rf-rm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Remove Everything with `rm-rf /`" class="md-nav__link">
+      Remove Everything with `rm-rf /`
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Openstack Research
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Openstack Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1. Intro Cloud Computing/" title="Cloud Computing and Openstack" class="md-nav__link">
+      Cloud Computing and Openstack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2.install-pack-stack/" title="2.install pack stack" class="md-nav__link">
+      2.install pack stack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Readme/" title="Readme" class="md-nav__link">
+      Readme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Advance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-2-4">
+        Advance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/1. Key-Rotate-&-Decrypt/" title="Fernet và Rotate trong OPS" class="md-nav__link">
+      Fernet và Rotate trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/10. Limit-CPU-Resource/" title="10. Limit CPU Resource" class="md-nav__link">
+      10. Limit CPU Resource
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/11. Metadata/" title="11. Metadata" class="md-nav__link">
+      11. Metadata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/12. Cloud-init/" title="12. Cloud init" class="md-nav__link">
+      12. Cloud init
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/13. Cloud-init-Script/" title="13. Cloud init Script" class="md-nav__link">
+      13. Cloud init Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/14. QOS - Neutron/" title="14. QOS   Neutron" class="md-nav__link">
+      14. QOS   Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/15. QOS - Cinder/" title="15. QOS   Cinder" class="md-nav__link">
+      15. QOS   Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/16. Cinder-Backup-NFS/" title="16. Cinder Backup NFS" class="md-nav__link">
+      16. Cinder Backup NFS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/17. Transfer-&-Extend-Root-Volume/" title="17. Transfer & Extend Root Volume" class="md-nav__link">
+      17. Transfer & Extend Root Volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/18. L3-Agent-HA-Compute/" title="18. L3 Agent HA Compute" class="md-nav__link">
+      18. L3 Agent HA Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/2.RabbitMQ-&-API-Endpoint/" title="2.RabbitMQ & API Endpoint" class="md-nav__link">
+      2.RabbitMQ & API Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/3. Log/" title="3. Log" class="md-nav__link">
+      3. Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/4. Setup-noVNC/" title="noVNC trong OPS" class="md-nav__link">
+      noVNC trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/5. Nova-Compute-Serice-&-RabbitMQ/" title="5. Nova Compute Serice & RabbitMQ" class="md-nav__link">
+      5. Nova Compute Serice & RabbitMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/6. Placement-API-&-Nova-Conductor/" title="6. Placement API & Nova Conductor" class="md-nav__link">
+      6. Placement API & Nova Conductor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.1.  Resource-Management-OPS/" title="Resource Management trong OPS" class="md-nav__link">
+      Resource Management trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.2 . Nova-Scheduler-&-Host-Aggreaggregate/" title="1. Nova-scheduler" class="md-nav__link">
+      1. Nova-scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.3. Lab-Filter-Scheduler/" title="7.3. Lab Filter Scheduler" class="md-nav__link">
+      7.3. Lab Filter Scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/8. Resize-instance/" title="8. Resize instance" class="md-nav__link">
+      8. Resize instance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/9. Rescue-instance/" title="1. Nova-rescue" class="md-nav__link">
+      1. Nova-rescue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Barbican
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-2-5">
+        Barbican
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barbican/1. Intro-Setup/" title="1. Intro Setup" class="md-nav__link">
+      1. Intro Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barbican/2. Command/" title="2. Command" class="md-nav__link">
+      2. Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6" checked>
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Cinder
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-2-6">
+        Cinder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1. Introduction-cinder/" title="OpenStack Block Storage - Cinder" class="md-nav__link">
+      OpenStack Block Storage - Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2. Cinder Disk Work Flow
+      </label>
+    
+    <a href="./" title="2. Cinder Disk Work Flow" class="md-nav__link md-nav__link--active">
+      2. Cinder Disk Work Flow
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#moi_quan_he_giua_instance_va_disk" title="Mối quan hệ giữa instance và disk" class="md-nav__link">
+    Mối quan hệ giữa instance và disk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_boot_source" title="1. Boot Source" class="md-nav__link">
+    1. Boot Source
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_ephemeral_boot_disk" title="2. Ephemeral boot disk" class="md-nav__link">
+    2. Ephemeral boot disk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_volume_boot_disk" title="3. Volume boot disk" class="md-nav__link">
+    3. Volume boot disk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_mot_so_storage_backend" title="4. Một số storage backend" class="md-nav__link">
+    4. Một số storage backend
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_cinder_processes_concept_diagram" title="5. Cinder Processes Concept Diagram" class="md-nav__link">
+    5. Cinder Processes Concept Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6_qua_trinh_cinder_khoi_tao_volume" title="6. Quá trình Cinder khởi tạo Volume" class="md-nav__link">
+    6. Quá trình Cinder khởi tạo Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7_qua_trinh_cinder_attach_volume" title="7 . Quá trình Cinder Attach Volume" class="md-nav__link">
+    7 . Quá trình Cinder Attach Volume
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8_tham_khao_them" title="8 . Tham khảo thêm" class="md-nav__link">
+    8 . Tham khảo thêm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3. Install-Cinder-LVM/" title="3. Install Cinder LVM" class="md-nav__link">
+      3. Install Cinder LVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4. Basic-Command/" title="4. Basic Command" class="md-nav__link">
+      4. Basic Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5. Install-Multi-Backend/" title="5. Install Multi Backend" class="md-nav__link">
+      5. Install Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6. Filtering-Multi-Backend/" title="6. Filtering Multi Backend" class="md-nav__link">
+      6. Filtering Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7. Cinder-More/" title="7. Cinder More" class="md-nav__link">
+      7. Cinder More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Glance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="8">
+      <label class="md-nav__title" for="nav-2-7">
+        Glance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/1. Introduction-Glance/" title="OPENSTACK IMAGE - GLANCE" class="md-nav__link">
+      OPENSTACK IMAGE - GLANCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/2. Install Glance/" title="Cài đặt Glance - Openstack IMAGE" class="md-nav__link">
+      Cài đặt Glance - Openstack IMAGE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/3. Openstack-Glance-&-CURL/" title="Làm việc với Glance" class="md-nav__link">
+      Làm việc với Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/4. Config/" title="Tìm hiểu cấu hình cơ bản trong Glance" class="md-nav__link">
+      Tìm hiểu cấu hình cơ bản trong Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/5. Glance-Advanced/" title="5. Glance Advanced" class="md-nav__link">
+      5. Glance Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      High availability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="9">
+      <label class="md-nav__title" for="nav-2-8">
+        High availability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1. Introduction-HA/" title="1. Introduction HA" class="md-nav__link">
+      1. Introduction HA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-2" type="checkbox" id="nav-2-8-2">
+    
+    <label class="md-nav__link" for="nav-2-8-2">
+      1.HA Proxy   KeepAlive
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-8-2">
+        1.HA Proxy   KeepAlive
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/1.Intro/" title="1.Intro" class="md-nav__link">
+      1.Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/2. Setup-HA-Proxy-&&-KeepAlive/" title="2. Setup HA Proxy && KeepAlive" class="md-nav__link">
+      2. Setup HA Proxy && KeepAlive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/3.HA-Proxy-OPS/" title="3.HA Proxy OPS" class="md-nav__link">
+      3.HA Proxy OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/4. HAProxy-HTTP&Config/" title="4. HAProxy HTTP&Config" class="md-nav__link">
+      4. HAProxy HTTP&Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-nav__link">
+      5.  HAproxy ACL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-3" type="checkbox" id="nav-2-8-3">
+    
+    <label class="md-nav__link" for="nav-2-8-3">
+      2. Octavia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-8-3">
+        2. Octavia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/1.Intro+Setup/" title="1.Intro+Setup" class="md-nav__link">
+      1.Intro+Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/2.Use-Octavia/" title="2.Use Octavia" class="md-nav__link">
+      2.Use Octavia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/3. Octavia-Keep-Alived/" title="3. Octavia Keep Alived" class="md-nav__link">
+      3. Octavia Keep Alived
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/4 .VIP-QOS/" title="4 .VIP QOS" class="md-nav__link">
+      4 .VIP QOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/5.Theory-Octavia-L7-Policy/" title="5.Theory Octavia L7 Policy" class="md-nav__link">
+      5.Theory Octavia L7 Policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/6. LAB-Octavia-L7-Policy/" title="6. LAB Octavia L7 Policy" class="md-nav__link">
+      6. LAB Octavia L7 Policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-4" type="checkbox" id="nav-2-8-4">
+    
+    <label class="md-nav__link" for="nav-2-8-4">
+      3. Pacemaker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-8-4">
+        3. Pacemaker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/1. Intro-Pacemaker/" title="1. Intro Pacemaker" class="md-nav__link">
+      1. Intro Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/2. Install-Pacemaker/" title="2. Install Pacemaker" class="md-nav__link">
+      2. Install Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/3. Use-Pacemaker/" title="3. Use Pacemaker" class="md-nav__link">
+      3. Use Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/4. Pacemaker-Apache-Active-Passive/" title="4. Pacemaker Apache Active Passive" class="md-nav__link">
+      4. Pacemaker Apache Active Passive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/corosync/" title="Corosync" class="md-nav__link">
+      Corosync
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      Horizon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="10">
+      <label class="md-nav__title" for="nav-2-9">
+        Horizon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Horizon/Introduction-horizon/" title="OpenStack Dashboard - Horizon" class="md-nav__link">
+      OpenStack Dashboard - Horizon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Keystone
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-10">
+        Keystone
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/1. Introduction-Keystone/" title="1. Openstack Indentify ( Keystone )" class="md-nav__link">
+      1. Openstack Indentify ( Keystone )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/2.Install-Keystone/" title="Cài đặt và cấu hình Keystone" class="md-nav__link">
+      Cài đặt và cấu hình Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/3. Architecture-Keystone( additional )/" title="1. Kiến trúc trong Keystone ( bổ sung )" class="md-nav__link">
+      1. Kiến trúc trong Keystone ( bổ sung )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/4. Config-Keystone/" title="4. Config Keystone" class="md-nav__link">
+      4. Config Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/5. Keystone-Openstack-CLI/" title="Làm việc với Keystone qua CLI" class="md-nav__link">
+      Làm việc với Keystone qua CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/6. Keystone-CURL/" title="1. Application Credentials" class="md-nav__link">
+      1. Application Credentials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/7. Token-Keystone/" title="Tìm hiểu Token trong Openstack" class="md-nav__link">
+      Tìm hiểu Token trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      Neutron
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-11">
+        Neutron
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/1. Introduction-neutron/" title="Openstack networking - Neutron" class="md-nav__link">
+      Openstack networking - Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/10. OPS-Packet-Provider/" title="10. OPS Packet Provider" class="md-nav__link">
+      10. OPS Packet Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/11. VXLAN-Tunnel/" title="11. VXLAN Tunnel" class="md-nav__link">
+      11. VXLAN Tunnel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/12. VXLAN-Tunnel-Host-pair-OPS/" title="12. VXLAN Tunnel Host pair OPS" class="md-nav__link">
+      12. VXLAN Tunnel Host pair OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/2. Install Neutron Linux Bridge/" title="Cài đặt Neutron  -- Linux Bridge" class="md-nav__link">
+      Cài đặt Neutron  -- Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/2.1 . OVS-Self-Services/" title="2.1 . OVS Self Services" class="md-nav__link">
+      2.1 . OVS Self Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/2.2. OVS Self-Service-&-Provider/" title="2.2. OVS Self Service & Provider" class="md-nav__link">
+      2.2. OVS Self Service & Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/3. Neutron-CLI/" title="Làm việc với Neutron" class="md-nav__link">
+      Làm việc với Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/4. Neutron-Namespace-Agent/" title="TÌm hiểu Namepsace , DHCP, Agent trong OPS" class="md-nav__link">
+      TÌm hiểu Namepsace , DHCP, Agent trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/5.  Packet-Walkthrough-Linux-Bridge/" title="Neutron Traffic Flow trong Linux Bridge" class="md-nav__link">
+      Neutron Traffic Flow trong Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-nav__link">
+      Tìm hiểu bonding trong Centos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/7. VXLAN/" title="7. VXLAN" class="md-nav__link">
+      7. VXLAN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/8. OpenvSwitch-OPS/" title="Tìm hiểu OVS trong OPS" class="md-nav__link">
+      Tìm hiểu OVS trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Neutron/9. OPS-Packet-Self-Service/" title="Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack" class="md-nav__link">
+      Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      Nova
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-12">
+        Nova
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/1.Introduction-nova/" title="1.  Openstack Compute -Nova" class="md-nav__link">
+      1.  Openstack Compute -Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/2. Install-nova/" title="Cài đặt Nova - Openstack Compute" class="md-nav__link">
+      Cài đặt Nova - Openstack Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/3.Nova-Client&Curl/" title="Sử dụng Nova" class="md-nav__link">
+      Sử dụng Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/4. Nova-Instance-Work-flow/" title="4. Nova Instance Work flow" class="md-nav__link">
+      4. Nova Instance Work flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/5. Debug/" title="5. Debug" class="md-nav__link">
+      5. Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/6. Config-section/" title="Một số tùy chọn khác trong nova.conf" class="md-nav__link">
+      Một số tùy chọn khác trong nova.conf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#moi_quan_he_giua_instance_va_disk" title="Mối quan hệ giữa instance và disk" class="md-nav__link">
+    Mối quan hệ giữa instance và disk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_boot_source" title="1. Boot Source" class="md-nav__link">
+    1. Boot Source
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_ephemeral_boot_disk" title="2. Ephemeral boot disk" class="md-nav__link">
+    2. Ephemeral boot disk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_volume_boot_disk" title="3. Volume boot disk" class="md-nav__link">
+    3. Volume boot disk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_mot_so_storage_backend" title="4. Một số storage backend" class="md-nav__link">
+    4. Một số storage backend
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_cinder_processes_concept_diagram" title="5. Cinder Processes Concept Diagram" class="md-nav__link">
+    5. Cinder Processes Concept Diagram
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6_qua_trinh_cinder_khoi_tao_volume" title="6. Quá trình Cinder khởi tạo Volume" class="md-nav__link">
+    6. Quá trình Cinder khởi tạo Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7_qua_trinh_cinder_attach_volume" title="7 . Quá trình Cinder Attach Volume" class="md-nav__link">
+    7 . Quá trình Cinder Attach Volume
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8_tham_khao_them" title="8 . Tham khảo thêm" class="md-nav__link">
+    8 . Tham khảo thêm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>2. Cinder Disk Work Flow</h1>
+                
+                <h2 id="moi_quan_he_giua_instance_va_disk">Mối quan hệ giữa instance và disk<a class="headerlink" href="#moi_quan_he_giua_instance_va_disk" title="Permanent link">&para;</a></h2>
+<h2 id="1_boot_source">1. Boot Source<a class="headerlink" href="#1_boot_source" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Trong Openstack có nhiều các để khởi tạo ổ đĩa cho máy ảo<ul>
+<li>Image : Khởi chạy instance sử dụng image chạy trên ephemeral disk hoặc volume disk</li>
+<li>Instance Shapshoot : khởi chạy instance từ một bản snapshot trên một ephermeral disk hoặc volume disk</li>
+<li>Volume : Khởi chạy instance từ một bootable volume đã tồn tại</li>
+<li>Volume Snapshot : Khởi tạo một volume mới từ volume snapshot và chạy instance mới sử dụng  bootable volume mới</li>
+</ul>
+</li>
+</ul>
+<h2 id="2_ephemeral_boot_disk">2. Ephemeral boot disk<a class="headerlink" href="#2_ephemeral_boot_disk" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ephemeral disk là một disk ảo cho mục đích duy nhất là để boot máy ảo và  được coi là disk tạm thời</li>
+<li>Ephemeral disk được sử dụng trong trường hợp không quan tâm trong trường hợp xóa máy ảo và mất quan tâm dữ liệu bên trong . Có thể mount một volume nào đó vào một instance đang boot từ enphemeral disk và đổ dữ liệu vào trong volume đó</li>
+<li>Đặc tính của ephemeral disk :<ul>
+<li>Có thể snapshot : có thể nhân đôi bản instance hoặc sử dụng snapshot</li>
+<li>Không sử dụng hết volume quota : Nếu bạn có nhiều instance quota, bạn có thể boot chúng từ ephemeral disk ngay cả khi không có nhiều volume quota</li>
+<li>Ổ đĩa bị xóa khi máy ảo xóa</li>
+</ul>
+</li>
+</ul>
+<h2 id="3_volume_boot_disk">3. Volume boot disk<a class="headerlink" href="#3_volume_boot_disk" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Voume là dạng lưu trữ bền vững hơn ephemeral disk và có thể dùng để boot như là một block device, cũng có thể mount được.</li>
+<li>Volume boot disk hữu dụng khi bạn cần dupicate một vm hoặc backup chúng bằng cách snapshot, hoặc nếu bạn muốn dùng phương pháp lưu trữ đáng tin cậy hơn là ephemeral disk. Nếu dùng dạng này, cần có đủ quota cho các vm cần boot.</li>
+</ul>
+<p>Một số đặc tính :
+-   Có thể snapshot
+-   Không bị xóa khi xóa máy ảo : Bạn có thể xóa máy ảo nhưng dữ liệu vẫn còn trong volume
+-   Sử dụng hết volume quota : volume quota sẽ được sử dụng hết khi dùng tùy chọn này.</p>
+<h2 id="4_mot_so_storage_backend">4. Một số storage backend<a class="headerlink" href="#4_mot_so_storage_backend" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="https://i.imgur.com/SVdvkbz.png" /></p>
+<h2 id="5_cinder_processes_concept_diagram">5. Cinder Processes Concept Diagram<a class="headerlink" href="#5_cinder_processes_concept_diagram" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="http://netapp.github.io/openstack-deploy-ops-guide/icehouse/content/figures/3/a/images/cinder_process_layout.png" /></p>
+<ul>
+<li>Gồm có 4 process liên hệ với nhau trong Cinder service<ul>
+<li>cinder-api : WSGI application nhận các Request từ client và router đến các cinder process khác sử dụng AMQP</li>
+<li>cinder-sheduler : xác định backend đích dùng để khởi tạo volume hoặc các tác vụ khac</li>
+<li>cinder-volume : chấp nhận các request từ các cinder process và làm việc với các Cinder Driver . Quá trình này hoạt động đa luồng và thường chỉ có một luồng cho mỗi Cinder Backend</li>
+<li>cinder-backup : làm việc với các backend backup ( SWIFT ) , xử lý các request khi client yêu cầu khởi tạo backup hoặc quản lý các volume</li>
+</ul>
+</li>
+</ul>
+<h2 id="6_qua_trinh_cinder_khoi_tao_volume">6. Quá trình Cinder khởi tạo Volume<a class="headerlink" href="#6_qua_trinh_cinder_khoi_tao_volume" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="http://netapp.github.io/openstack-deploy-ops-guide/icehouse/content/figures/3/a/images/cinder_process_layout.png" /></p>
+<ul>
+<li>B1 : Client xử lý request tạo máy từ Rest API </li>
+<li>B2 : cinder-api kiểm tra các request hợp lệ, sau đó gủi các bản tin đến hàng chờ AMQP </li>
+<li>B3 : Cinder-sheduler : thực hiện đưa các message ra khởi hàng chờ và liệt kê các thông tin trên request để xác định được backend sử dụng</li>
+<li>B4 : Cinder-volume : đọc các message từ cinder-sheduler gửi về hàng chờ, và làm việc với backend driver được yêu cầu</li>
+<li>B5 : Cinder driver tương tác với các storage backend để khởi tạo volume</li>
+<li>B6 : Cinder-volume tập hợp volume metadata và gửi lên AMQP queue</li>
+<li>B8: Cinder-api đọc message trả lời từ queue và trả lời client.  </li>
+<li>B9: Cinder client nhận các request thông tin của volume</li>
+</ul>
+<h2 id="7_qua_trinh_cinder_attach_volume">7 . Quá trình Cinder Attach Volume<a class="headerlink" href="#7_qua_trinh_cinder_attach_volume" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="http://netapp.github.io/openstack-deploy-ops-guide/icehouse/content/figures/3/a/images/nova_volume_attach_process.png" /> </p>
+<ul>
+<li>B11.Client yêu cầu attach volume thông Nova Rest API ( client sử dụng python-cinderclient hoặc thông qua dashboard)  </li>
+<li>B2.nova-api xác thực yêu cầu xem có hợp lệ hay không? , thông tin user. Một khi được xác thực, gọi Cinder API để lấy thông tin về volume cụ thể.  </li>
+<li>B3.cinder-api xác thực yêu cầu xem có hợp lệ hay không?, thông tin user. Một khi được xác thực, post message đến volume manager thông qua AMQP.  </li>
+<li>B4.cinder-volume đọc message từ queue, gọi Cinder driver tương ứng đến volume để attached.  </li>
+<li>B5.Cinder driver chuẩn bị Cinder volume cho việc attachment ( các bước cụ thể phụ thuộc vào giao thức storage được sử dụng)  </li>
+<li>B6.cinder-volume post thông tin trả lời đến cinder-api thông qua AMQP queue.  </li>
+<li>B7.cinder-api đọc message trả lời từ cinder-volume từ queue, truyền thông tin kết nối trong RESTful reponse đến Nova caller.  </li>
+<li>B8.Nova tạo kết nối đến storage với thông tin trả lại từ Cinder.  </li>
+<li>B9.Nova truyền volume device/file đến hypervisor, sau đó attach volume device/file đến guest VM như một thiết bị block thực tế hoặc (phụ thuộc vào giao thức storage).</li>
+</ul>
+<h3 id="8_tham_khao_them">8 . Tham khảo thêm<a class="headerlink" href="#8_tham_khao_them" title="Permanent link">&para;</a></h3>
+<ul>
+<li>https://help.dreamhost.com/hc/en-us/articles/217701757-What-s-the-difference-between-ephemeral-and-volume-boot-disks-</li>
+<li>https://github.com/thaonguyenvan/meditech-thuctap/blob/master/ThaoNV/Tim%20hieu%20OpenStack/docs/cinder/cinder-workflow.md</li>
+<li>http://netapp.github.io/openstack-deploy-ops-guide/icehouse/content/section_cinder-processes.html</li>
+<li>https://docs.openstack.org/project-deploy-guide/openstack-ansible/draft/overview-storage-arch.html</li>
+<li>https://docs.openstack.org/arch-design/design-storage/design-storage-concepts.html</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../1. Introduction-cinder/" title="OpenStack Block Storage - Cinder" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                OpenStack Block Storage - Cinder
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../3. Install-Cinder-LVM/" title="3. Install Cinder LVM" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                3. Install Cinder LVM
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            nguyenhungsync
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.9e1f3b71.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1938 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="rf-rm Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>Neutron Traffic Flow trong Linux Bridge - rf-rm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#neutron_traffic_flow_trong_linux_bridge" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="rf-rm" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                rf-rm
+              </span>
+              <span class="md-header-nav__topic">
+                Neutron Traffic Flow trong Linux Bridge
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="rf-rm" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rf-rm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Remove Everything with `rm-rf /`" class="md-nav__link">
+      Remove Everything with `rm-rf /`
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Openstack Research
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Openstack Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1. Intro Cloud Computing/" title="Cloud Computing and Openstack" class="md-nav__link">
+      Cloud Computing and Openstack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2.install-pack-stack/" title="2.install pack stack" class="md-nav__link">
+      2.install pack stack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Readme/" title="Readme" class="md-nav__link">
+      Readme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Advance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-2-4">
+        Advance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/1. Key-Rotate-&-Decrypt/" title="Fernet và Rotate trong OPS" class="md-nav__link">
+      Fernet và Rotate trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/10. Limit-CPU-Resource/" title="10. Limit CPU Resource" class="md-nav__link">
+      10. Limit CPU Resource
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/11. Metadata/" title="11. Metadata" class="md-nav__link">
+      11. Metadata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/12. Cloud-init/" title="12. Cloud init" class="md-nav__link">
+      12. Cloud init
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/13. Cloud-init-Script/" title="13. Cloud init Script" class="md-nav__link">
+      13. Cloud init Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/14. QOS - Neutron/" title="14. QOS   Neutron" class="md-nav__link">
+      14. QOS   Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/15. QOS - Cinder/" title="15. QOS   Cinder" class="md-nav__link">
+      15. QOS   Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/16. Cinder-Backup-NFS/" title="16. Cinder Backup NFS" class="md-nav__link">
+      16. Cinder Backup NFS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/17. Transfer-&-Extend-Root-Volume/" title="17. Transfer & Extend Root Volume" class="md-nav__link">
+      17. Transfer & Extend Root Volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/18. L3-Agent-HA-Compute/" title="18. L3 Agent HA Compute" class="md-nav__link">
+      18. L3 Agent HA Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/2.RabbitMQ-&-API-Endpoint/" title="2.RabbitMQ & API Endpoint" class="md-nav__link">
+      2.RabbitMQ & API Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/3. Log/" title="3. Log" class="md-nav__link">
+      3. Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/4. Setup-noVNC/" title="noVNC trong OPS" class="md-nav__link">
+      noVNC trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/5. Nova-Compute-Serice-&-RabbitMQ/" title="5. Nova Compute Serice & RabbitMQ" class="md-nav__link">
+      5. Nova Compute Serice & RabbitMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/6. Placement-API-&-Nova-Conductor/" title="6. Placement API & Nova Conductor" class="md-nav__link">
+      6. Placement API & Nova Conductor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.1.  Resource-Management-OPS/" title="Resource Management trong OPS" class="md-nav__link">
+      Resource Management trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.2 . Nova-Scheduler-&-Host-Aggreaggregate/" title="1. Nova-scheduler" class="md-nav__link">
+      1. Nova-scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.3. Lab-Filter-Scheduler/" title="7.3. Lab Filter Scheduler" class="md-nav__link">
+      7.3. Lab Filter Scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/8. Resize-instance/" title="8. Resize instance" class="md-nav__link">
+      8. Resize instance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/9. Rescue-instance/" title="1. Nova-rescue" class="md-nav__link">
+      1. Nova-rescue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Barbican
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-2-5">
+        Barbican
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barbican/1. Intro-Setup/" title="1. Intro Setup" class="md-nav__link">
+      1. Intro Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barbican/2. Command/" title="2. Command" class="md-nav__link">
+      2. Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Cinder
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-2-6">
+        Cinder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/1. Introduction-cinder/" title="OpenStack Block Storage - Cinder" class="md-nav__link">
+      OpenStack Block Storage - Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/2. Cinder-Disk-Work-Flow/" title="2. Cinder Disk Work Flow" class="md-nav__link">
+      2. Cinder Disk Work Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/3. Install-Cinder-LVM/" title="3. Install Cinder LVM" class="md-nav__link">
+      3. Install Cinder LVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/4. Basic-Command/" title="4. Basic Command" class="md-nav__link">
+      4. Basic Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/5. Install-Multi-Backend/" title="5. Install Multi Backend" class="md-nav__link">
+      5. Install Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/6. Filtering-Multi-Backend/" title="6. Filtering Multi Backend" class="md-nav__link">
+      6. Filtering Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/7. Cinder-More/" title="7. Cinder More" class="md-nav__link">
+      7. Cinder More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Glance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="8">
+      <label class="md-nav__title" for="nav-2-7">
+        Glance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/1. Introduction-Glance/" title="OPENSTACK IMAGE - GLANCE" class="md-nav__link">
+      OPENSTACK IMAGE - GLANCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/2. Install Glance/" title="Cài đặt Glance - Openstack IMAGE" class="md-nav__link">
+      Cài đặt Glance - Openstack IMAGE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/3. Openstack-Glance-&-CURL/" title="Làm việc với Glance" class="md-nav__link">
+      Làm việc với Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/4. Config/" title="Tìm hiểu cấu hình cơ bản trong Glance" class="md-nav__link">
+      Tìm hiểu cấu hình cơ bản trong Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/5. Glance-Advanced/" title="5. Glance Advanced" class="md-nav__link">
+      5. Glance Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      High availability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="9">
+      <label class="md-nav__title" for="nav-2-8">
+        High availability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1. Introduction-HA/" title="1. Introduction HA" class="md-nav__link">
+      1. Introduction HA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-2" type="checkbox" id="nav-2-8-2">
+    
+    <label class="md-nav__link" for="nav-2-8-2">
+      1.HA Proxy   KeepAlive
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-8-2">
+        1.HA Proxy   KeepAlive
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/1.Intro/" title="1.Intro" class="md-nav__link">
+      1.Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/2. Setup-HA-Proxy-&&-KeepAlive/" title="2. Setup HA Proxy && KeepAlive" class="md-nav__link">
+      2. Setup HA Proxy && KeepAlive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/3.HA-Proxy-OPS/" title="3.HA Proxy OPS" class="md-nav__link">
+      3.HA Proxy OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/4. HAProxy-HTTP&Config/" title="4. HAProxy HTTP&Config" class="md-nav__link">
+      4. HAProxy HTTP&Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-nav__link">
+      5.  HAproxy ACL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-3" type="checkbox" id="nav-2-8-3">
+    
+    <label class="md-nav__link" for="nav-2-8-3">
+      2. Octavia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-8-3">
+        2. Octavia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/1.Intro+Setup/" title="1.Intro+Setup" class="md-nav__link">
+      1.Intro+Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/2.Use-Octavia/" title="2.Use Octavia" class="md-nav__link">
+      2.Use Octavia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/3. Octavia-Keep-Alived/" title="3. Octavia Keep Alived" class="md-nav__link">
+      3. Octavia Keep Alived
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/4 .VIP-QOS/" title="4 .VIP QOS" class="md-nav__link">
+      4 .VIP QOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/5.Theory-Octavia-L7-Policy/" title="5.Theory Octavia L7 Policy" class="md-nav__link">
+      5.Theory Octavia L7 Policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/6. LAB-Octavia-L7-Policy/" title="6. LAB Octavia L7 Policy" class="md-nav__link">
+      6. LAB Octavia L7 Policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-4" type="checkbox" id="nav-2-8-4">
+    
+    <label class="md-nav__link" for="nav-2-8-4">
+      3. Pacemaker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-8-4">
+        3. Pacemaker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/1. Intro-Pacemaker/" title="1. Intro Pacemaker" class="md-nav__link">
+      1. Intro Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/2. Install-Pacemaker/" title="2. Install Pacemaker" class="md-nav__link">
+      2. Install Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/3. Use-Pacemaker/" title="3. Use Pacemaker" class="md-nav__link">
+      3. Use Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/4. Pacemaker-Apache-Active-Passive/" title="4. Pacemaker Apache Active Passive" class="md-nav__link">
+      4. Pacemaker Apache Active Passive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/corosync/" title="Corosync" class="md-nav__link">
+      Corosync
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      Horizon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="10">
+      <label class="md-nav__title" for="nav-2-9">
+        Horizon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Horizon/Introduction-horizon/" title="OpenStack Dashboard - Horizon" class="md-nav__link">
+      OpenStack Dashboard - Horizon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Keystone
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-10">
+        Keystone
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/1. Introduction-Keystone/" title="1. Openstack Indentify ( Keystone )" class="md-nav__link">
+      1. Openstack Indentify ( Keystone )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/2.Install-Keystone/" title="Cài đặt và cấu hình Keystone" class="md-nav__link">
+      Cài đặt và cấu hình Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/3. Architecture-Keystone( additional )/" title="1. Kiến trúc trong Keystone ( bổ sung )" class="md-nav__link">
+      1. Kiến trúc trong Keystone ( bổ sung )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/4. Config-Keystone/" title="4. Config Keystone" class="md-nav__link">
+      4. Config Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/5. Keystone-Openstack-CLI/" title="Làm việc với Keystone qua CLI" class="md-nav__link">
+      Làm việc với Keystone qua CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/6. Keystone-CURL/" title="1. Application Credentials" class="md-nav__link">
+      1. Application Credentials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/7. Token-Keystone/" title="Tìm hiểu Token trong Openstack" class="md-nav__link">
+      Tìm hiểu Token trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11" checked>
+    
+    <label class="md-nav__link" for="nav-2-11">
+      Neutron
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-11">
+        Neutron
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1. Introduction-neutron/" title="Openstack networking - Neutron" class="md-nav__link">
+      Openstack networking - Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10. OPS-Packet-Provider/" title="10. OPS Packet Provider" class="md-nav__link">
+      10. OPS Packet Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../11. VXLAN-Tunnel/" title="11. VXLAN Tunnel" class="md-nav__link">
+      11. VXLAN Tunnel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../12. VXLAN-Tunnel-Host-pair-OPS/" title="12. VXLAN Tunnel Host pair OPS" class="md-nav__link">
+      12. VXLAN Tunnel Host pair OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2. Install Neutron Linux Bridge/" title="Cài đặt Neutron  -- Linux Bridge" class="md-nav__link">
+      Cài đặt Neutron  -- Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.1 . OVS-Self-Services/" title="2.1 . OVS Self Services" class="md-nav__link">
+      2.1 . OVS Self Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.2. OVS Self-Service-&-Provider/" title="2.2. OVS Self Service & Provider" class="md-nav__link">
+      2.2. OVS Self Service & Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3. Neutron-CLI/" title="Làm việc với Neutron" class="md-nav__link">
+      Làm việc với Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4. Neutron-Namespace-Agent/" title="TÌm hiểu Namepsace , DHCP, Agent trong OPS" class="md-nav__link">
+      TÌm hiểu Namepsace , DHCP, Agent trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Neutron Traffic Flow trong Linux Bridge
+      </label>
+    
+    <a href="./" title="Neutron Traffic Flow trong Linux Bridge" class="md-nav__link md-nav__link--active">
+      Neutron Traffic Flow trong Linux Bridge
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1_provider_network" title="1. Provider network" class="md-nav__link">
+    1. Provider network
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_north_-_south_instance_with_ip_floating" title="1.1 . North - South : instance with IP Floating" class="md-nav__link">
+    1.1 . North - South : instance with IP Floating
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12_east_-_west_-_same_network" title="1.2. East - West - same network" class="md-nav__link">
+    1.2. East - West - same network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13_east-west_-_different_network" title="1.3 . East-west - different network" class="md-nav__link">
+    1.3 . East-west - different network
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_self-service_network" title="2. Self-service Network" class="md-nav__link">
+    2. Self-service Network
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21_north-south_-_instance_with_fixed_ip_v4" title="2.1. North-south - instance with Fixed IP V4" class="md-nav__link">
+    2.1. North-south - instance with Fixed IP V4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22_north-south_instance_with_floating_ip" title="2.2. North-South : instance with floating IP" class="md-nav__link">
+    2.2. North-South : instance with floating IP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_east-west_-_same_network" title="2.3 East-west - same network" class="md-nav__link">
+    2.3 East-west - same network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_east-west_-_different_network" title="2.3 East-west - different network" class="md-nav__link">
+    2.3 East-west - different network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_mot_so_quy_uoc_trong_neutron_ovs" title="3. Một số quy ước trong Neutron OVS" class="md-nav__link">
+    3. Một số quy ước trong Neutron OVS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_tham_khao_them" title="4. Tham khảo thêm" class="md-nav__link">
+    4. Tham khảo thêm
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-nav__link">
+      Tìm hiểu bonding trong Centos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../7. VXLAN/" title="7. VXLAN" class="md-nav__link">
+      7. VXLAN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../8. OpenvSwitch-OPS/" title="Tìm hiểu OVS trong OPS" class="md-nav__link">
+      Tìm hiểu OVS trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9. OPS-Packet-Self-Service/" title="Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack" class="md-nav__link">
+      Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      Nova
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-12">
+        Nova
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/1.Introduction-nova/" title="1.  Openstack Compute -Nova" class="md-nav__link">
+      1.  Openstack Compute -Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/2. Install-nova/" title="Cài đặt Nova - Openstack Compute" class="md-nav__link">
+      Cài đặt Nova - Openstack Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/3.Nova-Client&Curl/" title="Sử dụng Nova" class="md-nav__link">
+      Sử dụng Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/4. Nova-Instance-Work-flow/" title="4. Nova Instance Work flow" class="md-nav__link">
+      4. Nova Instance Work flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/5. Debug/" title="5. Debug" class="md-nav__link">
+      5. Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/6. Config-section/" title="Một số tùy chọn khác trong nova.conf" class="md-nav__link">
+      Một số tùy chọn khác trong nova.conf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1_provider_network" title="1. Provider network" class="md-nav__link">
+    1. Provider network
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_north_-_south_instance_with_ip_floating" title="1.1 . North - South : instance with IP Floating" class="md-nav__link">
+    1.1 . North - South : instance with IP Floating
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12_east_-_west_-_same_network" title="1.2. East - West - same network" class="md-nav__link">
+    1.2. East - West - same network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13_east-west_-_different_network" title="1.3 . East-west - different network" class="md-nav__link">
+    1.3 . East-west - different network
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_self-service_network" title="2. Self-service Network" class="md-nav__link">
+    2. Self-service Network
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21_north-south_-_instance_with_fixed_ip_v4" title="2.1. North-south - instance with Fixed IP V4" class="md-nav__link">
+    2.1. North-south - instance with Fixed IP V4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22_north-south_instance_with_floating_ip" title="2.2. North-South : instance with floating IP" class="md-nav__link">
+    2.2. North-South : instance with floating IP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_east-west_-_same_network" title="2.3 East-west - same network" class="md-nav__link">
+    2.3 East-west - same network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23_east-west_-_different_network" title="2.3 East-west - different network" class="md-nav__link">
+    2.3 East-west - different network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_mot_so_quy_uoc_trong_neutron_ovs" title="3. Một số quy ước trong Neutron OVS" class="md-nav__link">
+    3. Một số quy ước trong Neutron OVS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_tham_khao_them" title="4. Tham khảo thêm" class="md-nav__link">
+    4. Tham khảo thêm
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="neutron_traffic_flow_trong_linux_bridge">Neutron Traffic Flow trong Linux Bridge<a class="headerlink" href="#neutron_traffic_flow_trong_linux_bridge" title="Permanent link">&para;</a></h1>
+<h2 id="1_provider_network">1. Provider network<a class="headerlink" href="#1_provider_network" title="Permanent link">&para;</a></h2>
+<h3 id="11_north_-_south_instance_with_ip_floating">1.1 . North - South : instance with IP Floating<a class="headerlink" href="#11_north_-_south_instance_with_ip_floating" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-provider-flowns1.png" /></p>
+<p>Quá trình truyền tải  trên compute node : </p>
+<ul>
+<li>B1 : Instance interface sẽ gửi packet đến cổng tương ứng của instance trên provider bridge (1) thông qua kết nối <code>veth</code> ( 2 )</li>
+<li>B2 : Security group trên LB sẽ kiểm soát traffic (3)</li>
+<li>B3 : Các sub-interface trên provider bridge sẽ chuyển các frame đến physical interface ( có thể là VLAN subport hoặc flat ) (4 )</li>
+<li>B4 : Physical interface sẽ (5 ) chuyển tiếp các traffic ra ngoài switch ngoài hạ tầng ( có thể gắn VLAN_ID hoặc no_tag ) (6 )</li>
+<li>B5.: Khi đến swtich vật lý ( 6 ) các frame sẽ được bỏ VLAN và chuyển đến router (  7 ) </li>
+<li>B6. Router nhận packet từ provider network sau đó sẽ gửi ra mạng ngoài ( 8 ) </li>
+</ul>
+<h3 id="12_east_-_west_-_same_network">1.2. East - West - same network<a class="headerlink" href="#12_east_-_west_-_same_network" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-provider-flowew1.png" /></p>
+<p>Các instance thuộc các compute node khác nhau  liên hệ với nhau trên cùng một network
+Đường đi của của các instance
+- B1 :  instance  interface (1 ) sẽ gửi các packet đến tun port tương ứng trên provider bridge (2) nhờ vào <code>veth</code> pair
+- B2 :  Security group (3 sẽ làm việc kiểm soát các packet 
+- B3.  Các sub_interface  (4 ) trên bridge sẽ gửi các packet tới physical interface ( 5 ) - có thể VLAN_port hoặc no_tag
+- B4.  Physical interface ( 5 ) sẽ gắn VLAN_ID tương ứng với VLAN_PORT hoặc no_tag sau đó gửi frame đến swtich ( 6 )
+- B5. Switch sẽ gửi frame từ compute 1 đến compute 2 ( 7 )
+- B6. Physical interface ( 8 )  trên Compute sẽ bỏ VLAN_ID ( hoặc không ) sau đó gửi đến VLAN_sub interface tương ứng ( 9 ) trên provider bridge
+- B7. Security group sẽ kiểm soát packet ( 10 )
+- B8. Provider bridge gửi packet đến instance interface</p>
+<h3 id="13_east-west_-_different_network">1.3 . East-west - different network<a class="headerlink" href="#13_east-west_-_different_network" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-provider-flowew2.png" /></p>
+<p>Các instance thuộc các compute node khác nhau  liên hệ với nhau khác network
+- Trên Compute 1 
+    - B1. instance interface ( 1 ) sẽ gửi packet đến đến port trên provider bridge nhờ <code>veth</code> pair ( 2 )
+    - B2. Security group (  3 ) sẽ  kiểm soát traffic
+    - B3. VLAN sub_interface hoặc no_vlan (4 ) trên provider bridge packet đến physical interface 
+    - B4. Physical interface ( 5 ) sẽ thêm VLAN_ID vào frame sau đó gửi frame đến switch vật lý  ( 6 ) </p>
+<ul>
+<li>
+<p>Trên mạng vật lý</p>
+<ul>
+<li>B1. Switch sẽ bỏ VLAN_ID trên sau đó gửi packet đến router ( 7 ) </li>
+<li>B2. Router gửi packet từ provider network 1 ( 8 ) sang provider network 2 ( 9 ) </li>
+<li>B3. Router sẽ gửi packet đến swtich ( 10 ) </li>
+<li>B4. Swtich thêm VLAN_ID hoặc no_tag sau đó gửi frame đến compute 2 ( 11 )</li>
+</ul>
+</li>
+<li>
+<p>Trên Compute 2 :</p>
+<ul>
+<li>B1.  Trên physical interface ( 12 )sẽ bỏ VLAN_ID và gửi packet đến sub_port trên provider bridge ( 13</li>
+<li>B2. Security group sẽ kiểm soát traffic ( 14 )</li>
+<li>B3. Provider bridge (15 ) sẽ gửi packet đến port của instance 2 ( 16 )</li>
+</ul>
+</li>
+</ul>
+<h2 id="2_self-service_network">2. Self-service Network<a class="headerlink" href="#2_self-service_network" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Trong self-service các instance sẽ sử dụng IPv4 Private . Để  truy cập được interface , networking service sẽ làm nhiệm vụ SNAT ( Source Network Addresss Translation ) để  truy cập ra mạng  external . . Để từ các mạng có thể truy cập , các instance yêu cầu có một floating IP . Networking service thực hiện DNAT ( desnation network address translation ) từ IP Floating sang IP self-service </li>
+</ul>
+<h3 id="21_north-south_-_instance_with_fixed_ip_v4">2.1. North-south - instance with Fixed IP V4<a class="headerlink" href="#21_north-south_-_instance_with_fixed_ip_v4" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-selfservice-flowns1.png" />
+Với các instance kèm IP v4 Floating, trên network node sẽ thực hiện SNAT để self-service có thể giao tiếp với mạng ngoài </p>
+<p>Đường đi của instance đi ra internet :
+- Trên compute node :
+    - B1 :  instance interface ( 1 )  sẽ gửi packet đến port tương ứng đến bridge sử dụng <code>veth</code> pair ( 2 ) 
+    - B2 : Security group ( 3 ) sẽ đảm nhiệm filter traffic (3 )
+    - B3 : Self-service bridge sẽ chuyển packet tới VXLAN interface trên bridge ( 4 ) kèm VNI
+    - B4 : Physical interface ( 5 ) cho phép mạng Overlay XVLAN chuyển packet lên network node ( 6 ) </p>
+<ul>
+<li>Trên network node :<ul>
+<li>B1 : Physical network ( 7 ) nhận packet từ Overlay VXLAN Interface  sau đó chuyển lên Self-service bridge port ( 8 ) </li>
+<li>B2 : Self-service bridge( 9 )  sẽ gửi packet đến router namespace .( 10 ) Với IPv4. router namespace sẽ thực hiện SNAT, thay đổi IP nguồn thành Router IP của Provider Network  ( 11 ) . </li>
+<li>B3 : Router gửi packet đến provider bridge ( 12 )</li>
+<li>B4 : VLAN sub_interface trên provider bridge sẽ gửi packet đến provider physical network interface . </li>
+<li>B5 : Provider physical network thêm VLAN Tag và đi ra internet  </li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://docs.openstack.org/mitaka/install-guide-ubuntu/_images/network2-overview.png" /></p>
+<h3 id="22_north-south_instance_with_floating_ip">2.2. North-South : instance with floating IP<a class="headerlink" href="#22_north-south_instance_with_floating_ip" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-selfservice-flowns2.png" /></p>
+<p>Quá trình một host từ internet gửi packet cho instance</p>
+<ul>
+<li>Trên network node :<ul>
+<li>B1: Từ mạng vật lý ( 1 ) gửi packet vào provider physical interface ( 2 ) </li>
+<li>B2: Provider physical interface ( 3 ) sẽ bỏ các VLAN_TAG và sẽ gửi các packet vào VLAN Sub_interface tương ứng  trên provider bridge ( 4 ) </li>
+<li>B3 : Provider bridge sẽ chuyển packet sang self-service router gateway port ( 5 ) <ul>
+<li>Với IPv4, router đảm nhiệm thực hiện DNAT để thay đổi địa chỉ đích IP thành IP Floating của instance trên self-service network . ( 6 ) </li>
+</ul>
+</li>
+<li>B4 : Router chuyển gói tin đến tin đến self-service bridge port ( 7 )</li>
+<li>B5 : Self-service bridge gửi packet đến VXLAN Interface kèm theo VNI  ( 8 )</li>
+<li>B6 : Physical network interface( 9  )  gửi packet đến compute node thông qua Overlay network ( 10 )</li>
+</ul>
+</li>
+</ul>
+<p>Trên compute node:
+    - B1 : Physical interface ( 11 )  send packet tới VXLAN interface ở self-server bridge ( 12 ) 
+    - B2 : Security group đảm nhiệm filter packet ( 13 )
+    - B3 : Self-service bridge chuyển packet đến instance port</p>
+<h3 id="23_east-west_-_same_network">2.3 East-west - same network<a class="headerlink" href="#23_east-west_-_same_network" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-selfservice-flowew1.png" /></p>
+<p>Trên Compute 1 :
+- B1 : Instance interface ( 1 )  chuyển packet đến self-service port tương ứng  ( 2 )
+- B2 : Security group ( 3 ) đảm nhiệm filter data 
+- B3 : Self-service bridge ( 4 ) chuyển tiếp packet tới VXLAN Interface kèm theo VNI
+- B4 : Physical interface  ( 5 ) chuyển tiếp packet tới compute 2 nhờ overlay network ( 6 ) </p>
+<p>Trên Compute 2 :
+- B1 : Trên physical ( 7 )  interface cho phép XVLAN interface chuyển tiếp packet tới XVLAN interface ( 8 ) 
+- B2 : Security group ( 9 ) đảm nhiệm filter data
+- B3 : Self-service bridge  ( 10 ) chuyển data tới instance interface ( 11 ) </p>
+<h3 id="23_east-west_-_different_network">2.3 East-west - different network<a class="headerlink" href="#23_east-west_-_different_network" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://docs.openstack.org/neutron/pike/_images/deploy-lb-selfservice-flowew2.png" /></p>
+<h3 id="3_mot_so_quy_uoc_trong_neutron_ovs">3. Một số quy ước trong Neutron OVS<a class="headerlink" href="#3_mot_so_quy_uoc_trong_neutron_ovs" title="Permanent link">&para;</a></h3>
+<p><strong>Trên compute node</strong>
+-  Linux bridge: qbr-ID 
+-  Linux bridge nằm giữa VM và br-int, gồm 2 port:
+    -   port tap gắn với VM: tap-ID
+    -   port veth pair gắn với br-int: qvb-ID
+-   Br-int :
+    -   port veth pair gắn với linux bridge: qvo-ID
+    -   port patch gắn với br-tun</p>
+<p>Trên 1 network thì các port của các thiết bị này có chung ID là ID của network đó.</p>
+<p><strong>Trên network node</strong>
+-   Br-int: cung cấp router ảo và DHCP cho instance. gồm các port: 
+    -   port tap gắn với DHCP namespace: tap-ID  <br />
+    -   port qr gắn với router namespace: qr-ID  <br />
+-   Br-ex: cung cấp external connection. Gồm port qg gắn với router namespace: qg-ID</p>
+<p><img alt="" src="https://www.rdoproject.org/images/neutron_architecture.png?1495114718" /></p>
+<h2 id="4_tham_khao_them">4. Tham khảo thêm<a class="headerlink" href="#4_tham_khao_them" title="Permanent link">&para;</a></h2>
+<p>[1] : https://docs.openstack.org/neutron/pike/admin/deploy-lb-provider.html</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../4. Neutron-Namespace-Agent/" title="TÌm hiểu Namepsace , DHCP, Agent trong OPS" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                TÌm hiểu Namepsace , DHCP, Agent trong OPS
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Tìm hiểu bonding trong Centos
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            nguyenhungsync
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.9e1f3b71.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
