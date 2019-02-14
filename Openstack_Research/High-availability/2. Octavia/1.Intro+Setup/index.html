@@ -1,0 +1,2362 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="rf-rm Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>1.Intro+Setup - rf-rm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#cai_at_octavia_tren_openstack" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../../.." title="rf-rm" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                rf-rm
+              </span>
+              <span class="md-header-nav__topic">
+                1.Intro+Setup
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../../.." title="rf-rm" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rf-rm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Remove Everything with `rm-rf /`" class="md-nav__link">
+      Remove Everything with `rm-rf /`
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Openstack Research
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Openstack Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1. Intro Cloud Computing/" title="Cloud Computing and Openstack" class="md-nav__link">
+      Cloud Computing and Openstack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2.install-pack-stack/" title="2.install pack stack" class="md-nav__link">
+      2.install pack stack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Readme/" title="Readme" class="md-nav__link">
+      Readme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Advance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-2-4">
+        Advance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/1. Key-Rotate-&-Decrypt/" title="Fernet và Rotate trong OPS" class="md-nav__link">
+      Fernet và Rotate trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/10. Limit-CPU-Resource/" title="10. Limit CPU Resource" class="md-nav__link">
+      10. Limit CPU Resource
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/11. Metadata/" title="11. Metadata" class="md-nav__link">
+      11. Metadata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/12. Cloud-init/" title="12. Cloud init" class="md-nav__link">
+      12. Cloud init
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/13. Cloud-init-Script/" title="13. Cloud init Script" class="md-nav__link">
+      13. Cloud init Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/14. QOS - Neutron/" title="14. QOS   Neutron" class="md-nav__link">
+      14. QOS   Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/15. QOS - Cinder/" title="15. QOS   Cinder" class="md-nav__link">
+      15. QOS   Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/16. Cinder-Backup-NFS/" title="16. Cinder Backup NFS" class="md-nav__link">
+      16. Cinder Backup NFS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/17. Transfer-&-Extend-Root-Volume/" title="17. Transfer & Extend Root Volume" class="md-nav__link">
+      17. Transfer & Extend Root Volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/18. L3-Agent-HA-Compute/" title="18. L3 Agent HA Compute" class="md-nav__link">
+      18. L3 Agent HA Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/2.RabbitMQ-&-API-Endpoint/" title="2.RabbitMQ & API Endpoint" class="md-nav__link">
+      2.RabbitMQ & API Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/3. Log/" title="3. Log" class="md-nav__link">
+      3. Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/4. Setup-noVNC/" title="noVNC trong OPS" class="md-nav__link">
+      noVNC trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/5. Nova-Compute-Serice-&-RabbitMQ/" title="5. Nova Compute Serice & RabbitMQ" class="md-nav__link">
+      5. Nova Compute Serice & RabbitMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/6. Placement-API-&-Nova-Conductor/" title="6. Placement API & Nova Conductor" class="md-nav__link">
+      6. Placement API & Nova Conductor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/7.1.  Resource-Management-OPS/" title="Resource Management trong OPS" class="md-nav__link">
+      Resource Management trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/7.2 . Nova-Scheduler-&-Host-Aggreaggregate/" title="1. Nova-scheduler" class="md-nav__link">
+      1. Nova-scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/7.3. Lab-Filter-Scheduler/" title="7.3. Lab Filter Scheduler" class="md-nav__link">
+      7.3. Lab Filter Scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/8. Resize-instance/" title="8. Resize instance" class="md-nav__link">
+      8. Resize instance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/9. Rescue-instance/" title="1. Nova-rescue" class="md-nav__link">
+      1. Nova-rescue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Barbican
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-2-5">
+        Barbican
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Barbican/1. Intro-Setup/" title="1. Intro Setup" class="md-nav__link">
+      1. Intro Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Barbican/2. Command/" title="2. Command" class="md-nav__link">
+      2. Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Cinder
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-2-6">
+        Cinder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/1. Introduction-cinder/" title="OpenStack Block Storage - Cinder" class="md-nav__link">
+      OpenStack Block Storage - Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/2. Cinder-Disk-Work-Flow/" title="2. Cinder Disk Work Flow" class="md-nav__link">
+      2. Cinder Disk Work Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/3. Install-Cinder-LVM/" title="3. Install Cinder LVM" class="md-nav__link">
+      3. Install Cinder LVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/4. Basic-Command/" title="4. Basic Command" class="md-nav__link">
+      4. Basic Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/5. Install-Multi-Backend/" title="5. Install Multi Backend" class="md-nav__link">
+      5. Install Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/6. Filtering-Multi-Backend/" title="6. Filtering Multi Backend" class="md-nav__link">
+      6. Filtering Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/7. Cinder-More/" title="7. Cinder More" class="md-nav__link">
+      7. Cinder More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Glance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="8">
+      <label class="md-nav__title" for="nav-2-7">
+        Glance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/1. Introduction-Glance/" title="OPENSTACK IMAGE - GLANCE" class="md-nav__link">
+      OPENSTACK IMAGE - GLANCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/2. Install Glance/" title="Cài đặt Glance - Openstack IMAGE" class="md-nav__link">
+      Cài đặt Glance - Openstack IMAGE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/3. Openstack-Glance-&-CURL/" title="Làm việc với Glance" class="md-nav__link">
+      Làm việc với Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/4. Config/" title="Tìm hiểu cấu hình cơ bản trong Glance" class="md-nav__link">
+      Tìm hiểu cấu hình cơ bản trong Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/5. Glance-Advanced/" title="5. Glance Advanced" class="md-nav__link">
+      5. Glance Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8" checked>
+    
+    <label class="md-nav__link" for="nav-2-8">
+      High availability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="9">
+      <label class="md-nav__title" for="nav-2-8">
+        High availability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1. Introduction-HA/" title="1. Introduction HA" class="md-nav__link">
+      1. Introduction HA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-2" type="checkbox" id="nav-2-8-2">
+    
+    <label class="md-nav__link" for="nav-2-8-2">
+      1.HA Proxy   KeepAlive
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-8-2">
+        1.HA Proxy   KeepAlive
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.HA-Proxy---KeepAlive/1.Intro/" title="1.Intro" class="md-nav__link">
+      1.Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.HA-Proxy---KeepAlive/2. Setup-HA-Proxy-&&-KeepAlive/" title="2. Setup HA Proxy && KeepAlive" class="md-nav__link">
+      2. Setup HA Proxy && KeepAlive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.HA-Proxy---KeepAlive/3.HA-Proxy-OPS/" title="3.HA Proxy OPS" class="md-nav__link">
+      3.HA Proxy OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.HA-Proxy---KeepAlive/4. HAProxy-HTTP&Config/" title="4. HAProxy HTTP&Config" class="md-nav__link">
+      4. HAProxy HTTP&Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1.HA-Proxy---KeepAlive/5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-nav__link">
+      5.  HAproxy ACL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-3" type="checkbox" id="nav-2-8-3" checked>
+    
+    <label class="md-nav__link" for="nav-2-8-3">
+      2. Octavia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-8-3">
+        2. Octavia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        1.Intro+Setup
+      </label>
+    
+    <a href="./" title="1.Intro+Setup" class="md-nav__link md-nav__link--active">
+      1.Intro+Setup
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cai_at_octavia_tren_openstack" title="Cài đặt Octavia trên Openstack" class="md-nav__link">
+    Cài đặt Octavia trên Openstack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_octavia_-_load_balancing_solution_for_openstack" title="1. Octavia - Load Balancing Solution For Openstack" class="md-nav__link">
+    1. Octavia - Load Balancing Solution For Openstack
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_mo_au" title="1.1 . Mở đầu" class="md-nav__link">
+    1.1 . Mở đầu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12_octavia_uoc_su_dung_trong_openstack_khi_nao" title="1.2 : Octavia được sử dụng trong Openstack khi nào" class="md-nav__link">
+    1.2 : Octavia được sử dụng trong Openstack khi nào
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13_thanh_phan_trong_octavia" title="1.3 . Thành phần trong Octavia" class="md-nav__link">
+    1.3 . Thành phần trong Octavia
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_cac_thuat_ngu_bo_sung_trong_octavia" title="2.2 : Các thuật ngữ bổ sung trong Octavia" class="md-nav__link">
+    2.2 : Các thuật ngữ bổ sung trong Octavia
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_cac_mode_trien_khai_trong_octavia" title="2.2  : Các mode triển khai trong Octavia" class="md-nav__link">
+    2.2  : Các mode triển khai trong Octavia
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_cai_at_octavia_mo_hinh_single" title="3. Cài đặt Octavia mô hình SINGLE" class="md-nav__link">
+    3. Cài đặt Octavia mô hình SINGLE
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31_cai_at_package" title="3.1. Cài đặt package" class="md-nav__link">
+    3.1. Cài đặt package
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32_khoi_tao_user_service_su_dung_tai_khoan_admin" title="3.2 . Khởi tạo User, Service ( sử dụng tài khoản admin )" class="md-nav__link">
+    3.2 . Khởi tạo User, Service ( sử dụng tài khoản admin )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32_khoi_tao_network_security_group_thuc_hien_tren_octavia_user" title="3.2 . Khởi tạo Network, Security Group ( thực hiện trên Octavia User )" class="md-nav__link">
+    3.2 . Khởi tạo Network, Security Group ( thực hiện trên Octavia User )
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cac_khoi_tao_duoi_ay_uoc_su_dung_cho_section_controller_worker_trong_tap_tin_cau_hinh_etcoctaviaoctaviaconf" title="Các khởi tạo dưới đây được sử dụng cho section controller_worker trong tập tin cấu hình /etc/octavia/octavia.conf" class="md-nav__link">
+    Các khởi tạo dưới đây được sử dụng cho section controller_worker trong tập tin cấu hình /etc/octavia/octavia.conf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32_cau_hinh_neutron" title="3.2. Cấu hình Neutron" class="md-nav__link">
+    3.2. Cấu hình Neutron
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33_cau_hinh_octavia_hoan_chinh" title="3.3. Cấu hình Octavia hoàn chỉnh" class="md-nav__link">
+    3.3. Cấu hình Octavia hoàn chỉnh
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_cac_note_tham_khao" title="4. Các note tham khảo" class="md-nav__link">
+    4. Các note tham khảo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_tham_khao_them" title="5. Tham khảo thêm" class="md-nav__link">
+    5. Tham khảo thêm
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.Use-Octavia/" title="2.Use Octavia" class="md-nav__link">
+      2.Use Octavia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3. Octavia-Keep-Alived/" title="3. Octavia Keep Alived" class="md-nav__link">
+      3. Octavia Keep Alived
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4 .VIP-QOS/" title="4 .VIP QOS" class="md-nav__link">
+      4 .VIP QOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.Theory-Octavia-L7-Policy/" title="5.Theory Octavia L7 Policy" class="md-nav__link">
+      5.Theory Octavia L7 Policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6. LAB-Octavia-L7-Policy/" title="6. LAB Octavia L7 Policy" class="md-nav__link">
+      6. LAB Octavia L7 Policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-4" type="checkbox" id="nav-2-8-4">
+    
+    <label class="md-nav__link" for="nav-2-8-4">
+      3. Pacemaker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-8-4">
+        3. Pacemaker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/1. Intro-Pacemaker/" title="1. Intro Pacemaker" class="md-nav__link">
+      1. Intro Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/2. Install-Pacemaker/" title="2. Install Pacemaker" class="md-nav__link">
+      2. Install Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/3. Use-Pacemaker/" title="3. Use Pacemaker" class="md-nav__link">
+      3. Use Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/4. Pacemaker-Apache-Active-Passive/" title="4. Pacemaker Apache Active Passive" class="md-nav__link">
+      4. Pacemaker Apache Active Passive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/corosync/" title="Corosync" class="md-nav__link">
+      Corosync
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      Horizon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="10">
+      <label class="md-nav__title" for="nav-2-9">
+        Horizon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Horizon/Introduction-horizon/" title="OpenStack Dashboard - Horizon" class="md-nav__link">
+      OpenStack Dashboard - Horizon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Keystone
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-10">
+        Keystone
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/1. Introduction-Keystone/" title="1. Openstack Indentify ( Keystone )" class="md-nav__link">
+      1. Openstack Indentify ( Keystone )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/2.Install-Keystone/" title="Cài đặt và cấu hình Keystone" class="md-nav__link">
+      Cài đặt và cấu hình Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/3. Architecture-Keystone( additional )/" title="1. Kiến trúc trong Keystone ( bổ sung )" class="md-nav__link">
+      1. Kiến trúc trong Keystone ( bổ sung )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/4. Config-Keystone/" title="4. Config Keystone" class="md-nav__link">
+      4. Config Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/5. Keystone-Openstack-CLI/" title="Làm việc với Keystone qua CLI" class="md-nav__link">
+      Làm việc với Keystone qua CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/6. Keystone-CURL/" title="1. Application Credentials" class="md-nav__link">
+      1. Application Credentials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/7. Token-Keystone/" title="Tìm hiểu Token trong Openstack" class="md-nav__link">
+      Tìm hiểu Token trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      Neutron
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-11">
+        Neutron
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/1. Introduction-neutron/" title="Openstack networking - Neutron" class="md-nav__link">
+      Openstack networking - Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/10. OPS-Packet-Provider/" title="10. OPS Packet Provider" class="md-nav__link">
+      10. OPS Packet Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/11. VXLAN-Tunnel/" title="11. VXLAN Tunnel" class="md-nav__link">
+      11. VXLAN Tunnel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/12. VXLAN-Tunnel-Host-pair-OPS/" title="12. VXLAN Tunnel Host pair OPS" class="md-nav__link">
+      12. VXLAN Tunnel Host pair OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/2. Install Neutron Linux Bridge/" title="Cài đặt Neutron  -- Linux Bridge" class="md-nav__link">
+      Cài đặt Neutron  -- Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/2.1 . OVS-Self-Services/" title="2.1 . OVS Self Services" class="md-nav__link">
+      2.1 . OVS Self Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/2.2. OVS Self-Service-&-Provider/" title="2.2. OVS Self Service & Provider" class="md-nav__link">
+      2.2. OVS Self Service & Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/3. Neutron-CLI/" title="Làm việc với Neutron" class="md-nav__link">
+      Làm việc với Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/4. Neutron-Namespace-Agent/" title="TÌm hiểu Namepsace , DHCP, Agent trong OPS" class="md-nav__link">
+      TÌm hiểu Namepsace , DHCP, Agent trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/5.  Packet-Walkthrough-Linux-Bridge/" title="Neutron Traffic Flow trong Linux Bridge" class="md-nav__link">
+      Neutron Traffic Flow trong Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-nav__link">
+      Tìm hiểu bonding trong Centos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/7. VXLAN/" title="7. VXLAN" class="md-nav__link">
+      7. VXLAN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/8. OpenvSwitch-OPS/" title="Tìm hiểu OVS trong OPS" class="md-nav__link">
+      Tìm hiểu OVS trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/9. OPS-Packet-Self-Service/" title="Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack" class="md-nav__link">
+      Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      Nova
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-12">
+        Nova
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/1.Introduction-nova/" title="1.  Openstack Compute -Nova" class="md-nav__link">
+      1.  Openstack Compute -Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/2. Install-nova/" title="Cài đặt Nova - Openstack Compute" class="md-nav__link">
+      Cài đặt Nova - Openstack Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/3.Nova-Client&Curl/" title="Sử dụng Nova" class="md-nav__link">
+      Sử dụng Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/4. Nova-Instance-Work-flow/" title="4. Nova Instance Work flow" class="md-nav__link">
+      4. Nova Instance Work flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/5. Debug/" title="5. Debug" class="md-nav__link">
+      5. Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/6. Config-section/" title="Một số tùy chọn khác trong nova.conf" class="md-nav__link">
+      Một số tùy chọn khác trong nova.conf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cai_at_octavia_tren_openstack" title="Cài đặt Octavia trên Openstack" class="md-nav__link">
+    Cài đặt Octavia trên Openstack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_octavia_-_load_balancing_solution_for_openstack" title="1. Octavia - Load Balancing Solution For Openstack" class="md-nav__link">
+    1. Octavia - Load Balancing Solution For Openstack
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_mo_au" title="1.1 . Mở đầu" class="md-nav__link">
+    1.1 . Mở đầu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12_octavia_uoc_su_dung_trong_openstack_khi_nao" title="1.2 : Octavia được sử dụng trong Openstack khi nào" class="md-nav__link">
+    1.2 : Octavia được sử dụng trong Openstack khi nào
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13_thanh_phan_trong_octavia" title="1.3 . Thành phần trong Octavia" class="md-nav__link">
+    1.3 . Thành phần trong Octavia
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_cac_thuat_ngu_bo_sung_trong_octavia" title="2.2 : Các thuật ngữ bổ sung trong Octavia" class="md-nav__link">
+    2.2 : Các thuật ngữ bổ sung trong Octavia
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_cac_mode_trien_khai_trong_octavia" title="2.2  : Các mode triển khai trong Octavia" class="md-nav__link">
+    2.2  : Các mode triển khai trong Octavia
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_cai_at_octavia_mo_hinh_single" title="3. Cài đặt Octavia mô hình SINGLE" class="md-nav__link">
+    3. Cài đặt Octavia mô hình SINGLE
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31_cai_at_package" title="3.1. Cài đặt package" class="md-nav__link">
+    3.1. Cài đặt package
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32_khoi_tao_user_service_su_dung_tai_khoan_admin" title="3.2 . Khởi tạo User, Service ( sử dụng tài khoản admin )" class="md-nav__link">
+    3.2 . Khởi tạo User, Service ( sử dụng tài khoản admin )
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32_khoi_tao_network_security_group_thuc_hien_tren_octavia_user" title="3.2 . Khởi tạo Network, Security Group ( thực hiện trên Octavia User )" class="md-nav__link">
+    3.2 . Khởi tạo Network, Security Group ( thực hiện trên Octavia User )
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cac_khoi_tao_duoi_ay_uoc_su_dung_cho_section_controller_worker_trong_tap_tin_cau_hinh_etcoctaviaoctaviaconf" title="Các khởi tạo dưới đây được sử dụng cho section controller_worker trong tập tin cấu hình /etc/octavia/octavia.conf" class="md-nav__link">
+    Các khởi tạo dưới đây được sử dụng cho section controller_worker trong tập tin cấu hình /etc/octavia/octavia.conf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32_cau_hinh_neutron" title="3.2. Cấu hình Neutron" class="md-nav__link">
+    3.2. Cấu hình Neutron
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33_cau_hinh_octavia_hoan_chinh" title="3.3. Cấu hình Octavia hoàn chỉnh" class="md-nav__link">
+    3.3. Cấu hình Octavia hoàn chỉnh
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_cac_note_tham_khao" title="4. Các note tham khảo" class="md-nav__link">
+    4. Các note tham khảo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_tham_khao_them" title="5. Tham khảo thêm" class="md-nav__link">
+    5. Tham khảo thêm
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>1.Intro+Setup</h1>
+                
+                <h2 id="cai_at_octavia_tren_openstack">Cài đặt Octavia trên Openstack<a class="headerlink" href="#cai_at_octavia_tren_openstack" title="Permanent link">&para;</a></h2>
+<h2 id="1_octavia_-_load_balancing_solution_for_openstack">1. Octavia - Load Balancing Solution For Openstack<a class="headerlink" href="#1_octavia_-_load_balancing_solution_for_openstack" title="Permanent link">&para;</a></h2>
+<h3 id="11_mo_au">1.1 . Mở đầu<a class="headerlink" href="#11_mo_au" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Octavia là project trong Openstack, được sử dụng làm giải pháp cân bằng tải trong Openstack. </li>
+<li>Octavia được bắt đầu từ Neutron LBaas Project. </li>
+<li>Octavia cung cấp dịch vụ cân bằng tải bằng  cách các máy ảo quản lý  máy ảo, container, bare metal server , được gọi chung là : <em>amphorae</em>. Octavia khác với khác với các giải khác vì nó sinh để phục vụ cho môi trường cloud, tùy chỉnh theo yêu cầu</li>
+</ul>
+<h3 id="12_octavia_uoc_su_dung_trong_openstack_khi_nao">1.2 : Octavia được sử dụng trong Openstack khi nào<a class="headerlink" href="#12_octavia_uoc_su_dung_trong_openstack_khi_nao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cân bằng tải ( load balancing ) là điều cần thiết để để mở rộng quy mô có thể đơn giản hoặc quy mô lớn và tự động. </li>
+<li>Octavia được xem là project cần thiết giống như Nova, Neutron và các core project khác - điều cần thiết để xây dựng một Openstack Cloud ecosystem</li>
+<li>
+<p>Để hoàn thành vai trò , Octavia cần làm việc với các project khác :</p>
+<ul>
+<li>Nova : để quản lý vòng đời các tài nguyên trên các compute node theo nhu cầu</li>
+<li>Neutron : cho các mạng tentant ( project ) và các mạng external </li>
+<li>Barbican : quản lý TLS certificate và credential , và TLS Session</li>
+<li>Keystone : dùng để xác thực Octavia API và làm việc với các project khác</li>
+<li>Glance : để lưu trữ các <em>amphorae</em> virtual image</li>
+<li>Olso : để giai tiếp giữa các Octavia compoment.</li>
+<li>Taskflow : </li>
+</ul>
+</li>
+<li>
+<p>Octavia được thiết kế để tương tác với các thành phần ở trên. Với trên trừng project Octavia sẽ sử dụng một driver interface để làm việc.</p>
+</li>
+<li>Kể từ phiên bản Pike, Octavia được sử dụng làm một giải pháp cân bằng tải độc lập. Neutron LBaas được xóa bỏ tại phiên bản Queens, Octavia sẽ được sử dụng thay thế. </li>
+</ul>
+<h3 id="13_thanh_phan_trong_octavia">1.3 . Thành phần trong Octavia<a class="headerlink" href="#13_thanh_phan_trong_octavia" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://img-blog.csdn.net/2018073009232644?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ptaWxr/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" /></p>
+<ul>
+<li>Amphorea : là một máy ảo , container hoặc server cung cấp dịch vụ cân bằng tải. Nêu là máy ảo sẽ chạy trên các compute node, với các cấu hình để có khả năng cân bằng tải như listenner, pool, heath monitor, L7 Policies, hoặc gửi heat beat về Heah Manager</li>
+<li>Controller : được xem là "brain" của Octavia . Có bao gồm các thành phần con , và các tiến trình daemon. Nó có thể tương tác với các các thành phần con thông qua các drvier interface. <ul>
+<li>API Controller : cung cấp API interface, nhận các request và gửi về controller worker thông qua Olso message</li>
+<li>Controller worker : nhận các lệnh từ API controller, sau đó thực hiện các yêu đầu đề đề ra</li>
+<li>Heath Manager : cung cấp khả năng heat beat tới các amphorea, kiểm tra trạng thái và cung cấp khăng failover cho các máy ảo này</li>
+<li>Housekeeping Manager : cung cấp khả năng scaleup hoặc xóa dữ liệu và quản lý vòng đời của amphora certificate</li>
+</ul>
+</li>
+<li>network : octavia không thể hoàn thành nếu thiếu network. Các máy ảo amphora được gắn một network interface từ Load Balance network,hoặc sẽ là một port trên các tentant network. </li>
+<li>Pool : tập hợp các memeber lắng nghe request từ load balancer . Mỗi pool chỉ được liên kết với một listener.
+<img alt="" src="https://access.redhat.com/webassets/avalon/d/Red_Hat_OpenStack_Platform-13-Networking_Guide-en-US/images/1c872c1cb32da36ce85f48656ad056d8/OpenStack_Networking-Guide_471659_0518_LBaaS-Topology.png" /></li>
+</ul>
+<h2 id="22_cac_thuat_ngu_bo_sung_trong_octavia">2.2 : Các thuật ngữ bổ sung trong Octavia<a class="headerlink" href="#22_cac_thuat_ngu_bo_sung_trong_octavia" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fail-over là cho phép công việc thường chỉ được thực hiện bởi một máy chủ có thể thực hiện được bởi một máy chủ khác khi một trong 2 máy chủ xảy ra sự cố.</li>
+<li>Amphora Load Balancer Driver : được sử dụng bởi controlller để giao tiếp với amphorae. </li>
+<li>Anchor : là một projec trong Openstack cung cấp các khóa PKI ngắn hạn. Octavia sử dụng cho việc authen giữa các compoment</li>
+<li>Apolocation : là các amphorae không được đặt lên cùng một host vật lý </li>
+<li>L7 Policy : các tập policy cho quá trình routing cho các Client</li>
+<li>L7 Rule : các tập policy yêu cầu trùng khớp với các kết nối đến từ Client</li>
+<li>LB Network : network được controlller và amphorae giao tiếp , không được gán vào một project nào</li>
+<li>Listener : là các giao thức hoặc cổng ( không có IP )  sử dụng trong quá trình cân bằng tải</li>
+<li>VIP : Virtual IP Address : địa chỉ IP tĩnh được gắn cho quá trình cân bằng tải. Giống như các giao thức  CARP, VRRP, or HSRP sẽ có IP riêng cho quá trình định tuyến . Trong otavia , VIP sẽ được vào vào một network device định tuyến packet đến các máy ảo cân bằng tải và load cho các máy ảo backend</li>
+</ul>
+<h2 id="22_cac_mode_trien_khai_trong_octavia">2.2  : Các mode triển khai trong Octavia<a class="headerlink" href="#22_cac_mode_trien_khai_trong_octavia" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Trong Octavia hiện tại với bản Queens đang gồm 2 mode : SINGEL và ACTIVE_BACKUP</p>
+</li>
+<li>
+<p>Đối với SINGEL : cung cấp khả năng cân bằng tải , không có khả năng Failover co cho các Load Blancer</p>
+</li>
+<li>Đối với ACTIVE_STANDBY : cung cấp khả năng cân bằng tải , có khả năng Failover chLoad Blancer</li>
+</ul>
+<h2 id="3_cai_at_octavia_mo_hinh_single">3. Cài đặt Octavia mô hình SINGLE<a class="headerlink" href="#3_cai_at_octavia_mo_hinh_single" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Cơ sở để cấu hình :
+All API calls described throughout the rest of this document require authentication with the  <a href="https://docs.openstack.org/keystone/latest/">OpenStack Identity service</a>. After authentication, the base  <code>endpoint  URL</code>  for the  <code>service  type</code>  of  <code>load-balancer</code>  and  <code>service  name</code>  of  <code>octavia</code>  can be extracted from the service catalog returned with the identity token.</li>
+<li>https://docs.openstack.org/octavia/queens/contributor/guides/dev-quick-start.html</li>
+<li>
+<p>URL : https://developer.openstack.org/api-ref/load-balancer/v2/index.html</p>
+</li>
+<li>
+<p>Yêu cầu :</p>
+<ul>
+<li>Đã cài đặt các project : Keystone, Glance, Neutron ( bao gồm L3 Agent ) , Nova, Barbican</li>
+</ul>
+</li>
+</ul>
+<h3 id="31_cai_at_package">3.1. Cài đặt package<a class="headerlink" href="#31_cai_at_package" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Do cần sử dụng một số thư việc nên cần clone project của octavia</li>
+</ul>
+<pre><code>git clone https://github.com/openstack/octavia.git /root/octavia  -b stable/queens
+</code></pre>
+
+<ul>
+<li>Khởi tạo  <em>Certificate</em> Authorities sử dụng để mã hóa khi liên hệ giữa thành phần. Lưu ý đã bật service <code>Barbican</code></li>
+</ul>
+<pre><code>bash /root/octavia/bin/create_certificates.sh /etc/octavia/certs/ /root/octavia/etc/certificates/openssl.cnf 
+</code></pre>
+
+<ul>
+<li>Cài đặt package ( kiểm tra kỹ trước khi cài đặt, có thể gây xung đột với các project khác ) </li>
+</ul>
+<pre><code>wget https://pypi.python.org/packages/5e/5d/4e4364bb8b2a3e8d6c41ec21095aae3ac3396a6fa6983ea7f5551e929661/pyasn1-0.4.2-py2.4.egg#md5=84cf09817d8eb3b8955c5c558abd7ba7
+easy_install pyasn1-0.4.2-py2.4.egg 
+pip install pyasn1-modules==0.2.2
+pip install Jinja2==2.10
+pip install pyOpenSSL==17.1.0
+yum install -y python-octavia openstack-octavia-common openstack-octavia-diskimage-create openstack-octavia-health-manager openstack-octavia-housekeeping openstack-octavia-ui openstack-octavia-worker openstack-octavia-amphora-agent python2-octaviaclient openstack-octavia-api 
+
+</code></pre>
+
+<ul>
+<li>Khởi tạo Database cho Octavia</li>
+</ul>
+<pre><code>mysql -u root --password=hung &lt;&lt;EOF
+CREATE DATABASE octavia;
+GRANT ALL PRIVILEGES ON octavia.* TO 'octavia'@'localhost' \
+IDENTIFIED BY 'octavia_123';
+GRANT ALL PRIVILEGES ON octavia.* TO 'octavia'@'%' \
+IDENTIFIED BY 'octavia_123';
+EOF
+</code></pre>
+
+<h3 id="32_khoi_tao_user_service_su_dung_tai_khoan_admin">3.2 . Khởi tạo User, Service ( sử dụng tài khoản admin )<a class="headerlink" href="#32_khoi_tao_user_service_su_dung_tai_khoan_admin" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Khởi tạo User  và phân quyền</li>
+</ul>
+<pre><code>source admin-openrc
+openstack user create --domain default --password octavia_123 octavia
+openstack role add --project service --user octavia admin
+openstack service create load-balancer --name octavia
+</code></pre>
+
+<ul>
+<li>Khởi tạo Endpoint</li>
+</ul>
+<pre><code>openstack endpoint create octavia public http://controller:9876 --region RegionOne 
+openstack endpoint create octavia admin http://controller:9876 --region RegionOne
+openstack endpoint create octavia internal http://controller:9876 --region RegionOne
+</code></pre>
+
+<ul>
+<li>Khởi tạo network và subnet   VIP</li>
+</ul>
+<pre><code>openstack network create --external --default --share --provider-physical-network provider   --provider-network-type flat provider
+openstack subnet create --subnet-range 192.168.30.0/24 --dhcp --allocation-pool start=192.168.30.140,end=192.168.30.160 --dns-nameserver 1.1.1.1 --gateway=192.168.30.1 --network provider provider-net-30
+</code></pre>
+
+<ul>
+<li>Khởi tạo file rc để đăng nhập vào user <code>octavia</code> , sử dụng để khởi tạo các Security group, Flavor, Key pair</li>
+</ul>
+<pre><code>cat &lt;&lt;EOF &gt; octovia-openrc
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=service
+export OS_USERNAME=octavia
+export OS_PASSWORD=octavia_123
+export OS_AUTH_URL=http://controller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
+EOF
+</code></pre>
+
+<h3 id="32_khoi_tao_network_security_group_thuc_hien_tren_octavia_user">3.2 . Khởi tạo Network, Security Group ( thực hiện trên Octavia User )<a class="headerlink" href="#32_khoi_tao_network_security_group_thuc_hien_tren_octavia_user" title="Permanent link">&para;</a></h3>
+<h4 id="cac_khoi_tao_duoi_ay_uoc_su_dung_cho_section_controller_worker_trong_tap_tin_cau_hinh_etcoctaviaoctaviaconf">Các khởi tạo dưới đây được sử dụng cho section <code>controller_worker</code> trong tập tin cấu hình <code>/etc/octavia/octavia.conf</code><a class="headerlink" href="#cac_khoi_tao_duoi_ay_uoc_su_dung_cho_section_controller_worker_trong_tap_tin_cau_hinh_etcoctaviaoctaviaconf" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Đăng nhập vào user <code>octovia</code></li>
+</ul>
+<pre><code>source octovia-openrc
+</code></pre>
+
+<ul>
+<li>Khởi tạo  Security Group và Rule cho LB Network . Đây là mạng liên hệ giữa Controller và các VM Load Balancer. <br />
+Bản thân mạng LB thường sẽ là  dùng cho các controller và VM liên hệ với nova và neutron.  nhưng không được liên kết với bất kỳ một tenan nào
+( ID trả về : ce6fd5ce-de4c-43fe-927a-f2a1103a34bd ) </li>
+</ul>
+<pre><code>openstack --os-region-name=RegionOne security group create lb-mgmt-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol icmp lb-mgmt-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol tcp --dst-port 22 lb-mgmt-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol tcp --dst-port 9443 lb-mgmt-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol icmpv6 --ethertype IPv6 --remote-ip ::/0 lb-mgmt-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol tcp --dst-port 22 --ethertype IPv6 --remote-ip ::/0 lb-mgmt-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol tcp --dst-port 9443 --ethertype IPv6 --remote-ip ::/0 lb-mgmt-sec-grp
+
+</code></pre>
+
+<ul>
+<li>Khởi tạo Security group cho Health manager  ( heatbeat tới các VM Load Balanacer ) </li>
+</ul>
+<pre><code>openstack --os-region-name=RegionOne security group create lb-health-mgr-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol udp --dst-port 5555 lb-health-mgr-sec-grp
+openstack --os-region-name=RegionOne security group rule create --protocol udp --dst-port 5555 --ethertype IPv6 --remote-ip ::/0 lb-health-mgr-sec-grp
+</code></pre>
+
+<ul>
+<li>Khởi tạo LB Network ( ID trả về : 5cb04d80-c822-45dd-bd61-0d7fc1f2fcd0 ) </li>
+</ul>
+<pre><code>neutron --os-region-name=RegionOne net-create lb-mgmt-net1
+neutron --os-region-name=RegionOne subnet-create --name lb-mgmt-subnet1 lb-mgmt-net1 192.168.199.0/24
+</code></pre>
+
+<ul>
+<li>Khởi tạo port trên neutron sử dụng Security Group  <code>lb-health-mgr-sec-grp</code>, sau đó gắn vào openvswitch cho Health Manager</li>
+</ul>
+<pre><code>id_and_mac=$(neutron --os-region-name=RegionOne port-create --name octavia-health-manager-region-one-listen-port --security-group lb-health-mgr-sec-grp --device-owner Octavia:health-mgr --binding:host_id=$(hostname) lb-mgmt-net1 $PORT_FIXED_IP | awk '/ id | mac_address / {print $4}')
+id_and_mac=($id_and_mac)
+MGMT_PORT_ID=${id_and_mac[0]}
+MGMT_PORT_MAC=${id_and_mac[1]}
+MGMT_PORT_IP=$(openstack --os-region-name=RegionOne port show -f value -c fixed_ips $MGMT_PORT_ID | awk '{FS=&quot;,| &quot;; gsub(&quot;,&quot;,&quot;&quot;); gsub(&quot;'\''&quot;,&quot;&quot;); for(i = 1; i &lt;= NF; ++i) {if ($i ~ /^ip_address/) {n=index($i, &quot;=&quot;); if (substr($i, n+1) ~ &quot;\\.&quot;) print substr($i, n+1)}}}')
+neutron --os-region-name=RegionOne port-update --binding:host_id=$(hostname) $MGMT_PORT_ID
+sudo ovs-vsctl -- --may-exist add-port ${OVS_BRIDGE:-br-int} o-hm0 -- set Interface o-hm0 type=internal -- set Interface o-hm0 external-ids:iface-status=active -- set Interface o-hm0 external-ids:attached-mac=$MGMT_PORT_MAC -- set Interface o-hm0 external-ids:iface-id=$MGMT_PORT_ID -- set Interface o-hm0 external-ids:skip_cleanup=true
+OCTAVIA_DHCLIENT_CONF=/etc/octavia/dhcp/dhclient.conf
+sudo ip link set dev o-hm0 address $MGMT_PORT_MAC
+sudo dhclient -v o-hm0 -cf $OCTAVIA_DHCLIENT_CONF
+
+</code></pre>
+
+<ul>
+<li>Cấu hình FirewallD</li>
+</ul>
+<pre><code class="bash">firewall-cmd --add-port 5555/udp  --permanent
+firewall-cmd --reload 
+</code></pre>
+
+<ul>
+<li>Khởi tạo flavor cho Amphora ( ID Flavor trả về : 7c3a80ff-822e-4ace-bffb-54739c4a1108 )</li>
+</ul>
+<pre><code class="bash">openstack flavor create --disk 4 --ram 1024 --vcpus 1 --private --project service amphora_vm
+</code></pre>
+
+<ul>
+<li>Khởi tạo và upload một image mới cho máy ảo Amphora ( đảm nhiệm là Load Balancer - ID trả về :6c7c0a18-fe65-4065-9a1e-4dc170f1659d, tag trả về :  amphora )</li>
+</ul>
+<pre><code>octavia-diskimage-create.sh -r 123@123Aa -o ubuntu-ha
+openstack image create amphora-x64 --public --container-format bare --disk-format qcow2 --file /var/log/octavia/ubuntu-ha.qcow2
+openstack image set amphora-x64 --tag amphora-x64
+
+</code></pre>
+
+<h3 id="32_cau_hinh_neutron">3.2. Cấu hình Neutron<a class="headerlink" href="#32_cau_hinh_neutron" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tham khảo thêm : https://docs.openstack.org/neutron/queens/admin/config-dns-int.html</li>
+<li>Cấu hình <code>/etc/neutron/neutron.conf</code></li>
+</ul>
+<pre><code>[DEFAULT]
+dns_domain = 1.1.1.1
+[octavia]
+base_url=http://127.0.0.1:9876
+</code></pre>
+
+<ul>
+<li>Cấu hình ML2 <code>/etc/neutron/plugins/ml2/ml2_conf.ini</code></li>
+</ul>
+<pre><code>[ml2]
+extension_drivers = port_security,dns_domain_ports
+</code></pre>
+
+<ul>
+<li>Khởi động lại dịch vụ</li>
+</ul>
+<pre><code>systemctl restart neutron-server
+</code></pre>
+
+<h3 id="33_cau_hinh_octavia_hoan_chinh">3.3. Cấu hình Octavia hoàn chỉnh<a class="headerlink" href="#33_cau_hinh_octavia_hoan_chinh" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cấu hình tại <code>/etc/octavia/octavia.conf</code></li>
+</ul>
+<pre><code>cat &lt;&lt;EOF&gt; /etc/octavia/octavia.conf
+
+[DEFAULT]
+transport_url = rabbit://openstack:rabbitmq_123@controller
+publish_errors = true
+debug = False
+use_syslog = True
+
+[api_settings]
+
+auth_strategy = keystone
+bind_host = 0.0.0.0
+bind_port = 9876
+api_v1_enabled = true
+api_v2_enabled = true
+
+[database]
+
+connection = mysql+pymysql://octavia:octavia_123@controller/octavia
+
+[health_manager]
+event_streamer_driver = noop_event_streamer
+heartbeat_key = insecure
+controller_ip_port_list = {IP at o-hm0 }:5555
+bind_ip = {IP at o-hm0}
+bind_port = 5555
+sync_provisioning_status = true
+
+
+[keystone_authtoken]
+
+www_authenticate_uri = http://controller:5000/v3
+auth_url = http://controller:35357/v3
+
+username = octavia
+password = octavia_123
+project_name = service
+project_domain_name = Default
+user_domain_name = Default
+auth_type = password
+
+[certificates]
+cert_manager = barbican_cert_manager
+ca_certificate = /etc/octavia/certs/ca_01.pem
+ca_private_key = /etc/octavia/certs/private/cakey.pem
+ca_private_key_passphrase = foobar
+
+[anchor]
+[networking]
+
+[haproxy_amphora]
+
+bind_host = 0.0.0.0
+bind_port = 9443
+server_ca = /etc/octavia/certs/ca_01.pem
+client_cert = /etc/octavia/certs/client.pem
+base_path = /var/lib/octavia
+base_cert_dir = /var/lib/octavia/certs
+connection_max_retries = 1500
+connection_retry_interval = 1
+
+[controller_worker]
+
+workers = 1
+amp_active_retries = 100
+amp_active_wait_sec = 5
+loadbalancer_topology = SINGLE
+amp_ssh_key_name = pair_LB
+amp_image_tag = amphora-x64
+amp_secgroup_list = 985491e0-f399-4584-8f4a-4a3aa737714e
+amp_boot_network_list = 18a03d0a-8ad6-41e2-93ad-1abe8edce9b6
+amp_flavor_id = 6c7c0a18-fe65-4065-9a1e-4dc170f1659d
+
+network_driver = allowed_address_pairs_driver
+compute_driver = compute_nova_driver
+amphora_driver = amphora_haproxy_rest_driver
+
+amp_image_id = 7e5d5455-178b-4830-87eb-8fc1f9aefe63
+
+[task_flow]
+
+[oslo_messaging]
+rpc_thread_pool_size = 2
+topic = octavia_prov
+
+[oslo_messaging_rabbit]
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = rabbitmq_123
+
+[house_keeping]
+
+load_balancer_expiry_age = 3600 
+
+[amphora_agent]
+[keepalived_vrrp]
+
+[service_auth]
+project_domain_name = Default
+project_name = service
+user_domain_name = Default
+username = octavia
+password = octavia_123
+auth_type = password
+auth_url = http://controller:35357/v3
+
+
+[nova]
+[cinder]
+[glance]
+[neutron]
+[quotas]
+
+
+
+</code></pre>
+
+<ul>
+<li>Đồng bộ database</li>
+</ul>
+<pre><code>chown octavia:octavia /etc/octavia/certs -R
+octavia-db-manage upgrade head
+</code></pre>
+
+<ul>
+<li>Khởi động dịch vụ</li>
+</ul>
+<pre><code>systemctl start octavia-api.service
+systemctl start octavia-worker.service
+systemctl start octavia-health-manager.service
+systemctl start octavia-housekeeping.service
+
+systemctl status octavia-api.service
+systemctl status octavia-worker.service
+systemctl status octavia-health-manager.service
+systemctl status octavia-housekeeping.service
+
+
+systemctl enable octavia-api.service
+systemctl enable octavia-worker.service
+systemctl enable octavia-health-manager.service
+systemctl enable octavia-housekeeping.service
+
+</code></pre>
+
+<ul>
+<li>Cấu hình FirwallD</li>
+</ul>
+<pre><code>firewall-cmd --add-port=9876/tcp --permanent 
+firewall-cmd --reload
+</code></pre>
+
+<ul>
+<li>Cài đặt  Octavia Dashboard</li>
+</ul>
+<pre><code>git clone https://github.com/openstack/octavia-dashboard.git  -b stable/queens
+cd octavia-dashboard &amp;&amp; python setup.py sdist
+cp -a \
+  `pwd`/octavia_dashboard/enabled/_1482_*.py \
+  /usr/share/openstack-dashboard/openstack_dashboard/enabled/
+cd /usr/share/openstack-dashboard/ 
+./manage.py collectstatic 
+./manage.py compress
+systemctl restart httpd
+</code></pre>
+
+<p>openstack loadbalancer create --name lb8 --vip-subnet-id f653162e-945d-495a-8a03-e29503eb429e --debug</p>
+<h2 id="4_cac_note_tham_khao">4. Các note tham khảo<a class="headerlink" href="#4_cac_note_tham_khao" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Octavia makes use of an “LB Network” exclusively as a management network that the controller uses to talk to amphorae and vice versa. All the amphorae that Octavia deploys will have interfaces and IP addresses on this network. Therefore, it’s important that the subnet deployed on this network be sufficiently large to allow for the maximum number of amphorae and controllers likely to be deployed throughout the lifespan of the cloud installation.</li>
+</ul>
+<p>At the present time, only IPv4 subnets have been tested as the LB Network (for example: 172.31.0.0/16), though there are plans to eventually support IPv6 subnets for the LB Network.</p>
+<p>The LB Network is isolated from tenant networks on the amphorae by means of network namespaces on the amphorae. Therefore, operators need not be concerned about overlapping subnet ranges with tenant networks.</p>
+<p>You must also create a Neutron security group which will be applied to amphorae created on the LB network. It needs to allow amphorae to send UDP heartbeat packets to the health monitor (by default, UDP port 5555), and ingress on the amphora’s API (by default, TCP port 9443). It can also be helpful to allow SSH access to the amphorae from the controller for troubleshooting purposes (ie. TCP port 22), though this is not strictly necessary in production environments.</p>
+<p>Amphorae will send periodic health checks to the controller’s health manager. Any firewall protecting the interface on which the health manager listens must allow these packets from amphorae on the LB Network (by default, UDP port 5555).</p>
+<p>Finally, you need to add routing or interfaces to this network such that the Octavia controller (which will be described below) is able to communicate with hosts on this network. This also implies you should have some idea where you’re going to run the Octavia controller components.</p>
+<p>You must:</p>
+<ul>
+<li>Create the ‘lb-mgmt-net’.</li>
+<li>Assign the ‘lb-mgmt-net’ to the admin tenant.</li>
+<li>Create a subnet and assign it to the ‘lb-mgmt-net’.</li>
+<li>Create neutron security group for amphorae created on the ‘lb-mgmt-net’. which allows appropriate access to the amphorae.</li>
+<li>Update firewall rules on the host running the octavia health manager to allow health check messages from amphorae.</li>
+<li>Add appropriate routing to / from the ‘lb-mgmt-net’ such that egress is allowed, and the controller (to be created later) can talk to hosts on this network.</li>
+</ul>
+<p>This spec introduces the Neutron QoS function to meet the requirements. Currently, there are 3 ports(at least) in the loadbalancer created by Octavia. One is from the lb-mgmt-net, the others are from the vip-subnet, called “loadbalancer-LOADBALANCER_ID” and “octavia-lb-vrrp-LOADBALNCER_ID”. The first one is vip port, the second one is for vrrp HA, and it will set “allowed_address_pairs” toward vip fixed_ip. The QoS policy should focus on the attached port “octavia-lb-vrrp-LOADBALNCER_ID”.</p>
+<p>We could apply the Neutron QoS policy to the “octavia-lb-vrrp-LOADBALNCER_ID” ports, whether the topology is active-active or standalone.</p>
+<h2 id="5_tham_khao_them">5. Tham khảo thêm<a class="headerlink" href="#5_tham_khao_them" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://github.com/openstack/octavia/blob/master/devstack/plugin.sh</li>
+<li>http://blog.51cto.com/superbigsea/1862253</li>
+<li>http://gogosatellite.blogspot.com/2016/08/study-openstack-octavia-in-mitaka-by.html</li>
+<li>https://blog.csdn.net/Jmilk/article/details/81279795</li>
+<li>https://docs.openstack.org/tricircle/queens/install/installation-guide.html</li>
+<li>https://blog.zufardhiyaulhaq.com/manual-instalation-octavia-openstack-queens/</li>
+<li>https://lingxiankong.github.io/2017-09-13-octavia.html</li>
+<li>https://blog.csdn.net/Jmilk/article/details/81279795</li>
+<li>https://medium.com/@sankasathyaji/octavia-loadbalancer-installation-on-openstack-7ad19eea38dd</li>
+<li>https://ask.openstack.org/en/question/94127/mitakaoctavia-octavia-worker-cannot-reach-amphora/</li>
+<li>https://medium.com/@sankasathyaji/octavia-loadbalancer-installation-on-openstack-7ad19eea38dd</li>
+<li>https://docs.mirantis.com/mcp/latest/mcp-deployment-guide/configure-octavia.html</li>
+<li>https://www.codetd.com/article/4530901</li>
+<li>https://docs.openstack.org/octavia/latest/reference/glossary.html</li>
+<li>https://docs.openstack.org/octavia/queens/configuration/configref.html</li>
+<li>https://docs.openstack.org/mitaka/networking-guide/config-lbaas.html</li>
+<li>https://docs.openstack.org/newton/networking-guide/config-lbaas.html</li>
+<li>https://docs.openstack.org/octavia/queens/contributor/guides/dev-quick-start.html</li>
+<li>https://docs.openstack.org/openstack-ansible-os_octavia/latest/configure-octavia.html</li>
+<li>https://docs.openstack.org/tricircle/rocky/install/installation-guide.html</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../1.HA-Proxy---KeepAlive/5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                5.  HAproxy ACL
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../2.Use-Octavia/" title="2.Use Octavia" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2.Use Octavia
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            nguyenhungsync
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.9e1f3b71.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

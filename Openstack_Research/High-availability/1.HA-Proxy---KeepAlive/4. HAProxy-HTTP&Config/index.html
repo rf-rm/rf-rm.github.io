@@ -1,0 +1,2606 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="rf-rm Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>4. HAProxy HTTP&Config - rf-rm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="../../../../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#1_so_qua_ve_http" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../../.." title="rf-rm" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                rf-rm
+              </span>
+              <span class="md-header-nav__topic">
+                4. HAProxy HTTP&Config
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../../.." title="rf-rm" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rf-rm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Remove Everything with `rm-rf /`" class="md-nav__link">
+      Remove Everything with `rm-rf /`
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Openstack Research
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Openstack Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../1. Intro Cloud Computing/" title="Cloud Computing and Openstack" class="md-nav__link">
+      Cloud Computing and Openstack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../2.install-pack-stack/" title="2.install pack stack" class="md-nav__link">
+      2.install pack stack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Readme/" title="Readme" class="md-nav__link">
+      Readme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Advance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-2-4">
+        Advance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/1. Key-Rotate-&-Decrypt/" title="Fernet và Rotate trong OPS" class="md-nav__link">
+      Fernet và Rotate trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/10. Limit-CPU-Resource/" title="10. Limit CPU Resource" class="md-nav__link">
+      10. Limit CPU Resource
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/11. Metadata/" title="11. Metadata" class="md-nav__link">
+      11. Metadata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/12. Cloud-init/" title="12. Cloud init" class="md-nav__link">
+      12. Cloud init
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/13. Cloud-init-Script/" title="13. Cloud init Script" class="md-nav__link">
+      13. Cloud init Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/14. QOS - Neutron/" title="14. QOS   Neutron" class="md-nav__link">
+      14. QOS   Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/15. QOS - Cinder/" title="15. QOS   Cinder" class="md-nav__link">
+      15. QOS   Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/16. Cinder-Backup-NFS/" title="16. Cinder Backup NFS" class="md-nav__link">
+      16. Cinder Backup NFS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/17. Transfer-&-Extend-Root-Volume/" title="17. Transfer & Extend Root Volume" class="md-nav__link">
+      17. Transfer & Extend Root Volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/18. L3-Agent-HA-Compute/" title="18. L3 Agent HA Compute" class="md-nav__link">
+      18. L3 Agent HA Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/2.RabbitMQ-&-API-Endpoint/" title="2.RabbitMQ & API Endpoint" class="md-nav__link">
+      2.RabbitMQ & API Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/3. Log/" title="3. Log" class="md-nav__link">
+      3. Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/4. Setup-noVNC/" title="noVNC trong OPS" class="md-nav__link">
+      noVNC trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/5. Nova-Compute-Serice-&-RabbitMQ/" title="5. Nova Compute Serice & RabbitMQ" class="md-nav__link">
+      5. Nova Compute Serice & RabbitMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/6. Placement-API-&-Nova-Conductor/" title="6. Placement API & Nova Conductor" class="md-nav__link">
+      6. Placement API & Nova Conductor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/7.1.  Resource-Management-OPS/" title="Resource Management trong OPS" class="md-nav__link">
+      Resource Management trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/7.2 . Nova-Scheduler-&-Host-Aggreaggregate/" title="1. Nova-scheduler" class="md-nav__link">
+      1. Nova-scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/7.3. Lab-Filter-Scheduler/" title="7.3. Lab Filter Scheduler" class="md-nav__link">
+      7.3. Lab Filter Scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/8. Resize-instance/" title="8. Resize instance" class="md-nav__link">
+      8. Resize instance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Advance/9. Rescue-instance/" title="1. Nova-rescue" class="md-nav__link">
+      1. Nova-rescue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Barbican
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-2-5">
+        Barbican
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Barbican/1. Intro-Setup/" title="1. Intro Setup" class="md-nav__link">
+      1. Intro Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Barbican/2. Command/" title="2. Command" class="md-nav__link">
+      2. Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Cinder
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-2-6">
+        Cinder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/1. Introduction-cinder/" title="OpenStack Block Storage - Cinder" class="md-nav__link">
+      OpenStack Block Storage - Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/2. Cinder-Disk-Work-Flow/" title="2. Cinder Disk Work Flow" class="md-nav__link">
+      2. Cinder Disk Work Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/3. Install-Cinder-LVM/" title="3. Install Cinder LVM" class="md-nav__link">
+      3. Install Cinder LVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/4. Basic-Command/" title="4. Basic Command" class="md-nav__link">
+      4. Basic Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/5. Install-Multi-Backend/" title="5. Install Multi Backend" class="md-nav__link">
+      5. Install Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/6. Filtering-Multi-Backend/" title="6. Filtering Multi Backend" class="md-nav__link">
+      6. Filtering Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Cinder/7. Cinder-More/" title="7. Cinder More" class="md-nav__link">
+      7. Cinder More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Glance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="8">
+      <label class="md-nav__title" for="nav-2-7">
+        Glance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/1. Introduction-Glance/" title="OPENSTACK IMAGE - GLANCE" class="md-nav__link">
+      OPENSTACK IMAGE - GLANCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/2. Install Glance/" title="Cài đặt Glance - Openstack IMAGE" class="md-nav__link">
+      Cài đặt Glance - Openstack IMAGE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/3. Openstack-Glance-&-CURL/" title="Làm việc với Glance" class="md-nav__link">
+      Làm việc với Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/4. Config/" title="Tìm hiểu cấu hình cơ bản trong Glance" class="md-nav__link">
+      Tìm hiểu cấu hình cơ bản trong Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Glance/5. Glance-Advanced/" title="5. Glance Advanced" class="md-nav__link">
+      5. Glance Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8" checked>
+    
+    <label class="md-nav__link" for="nav-2-8">
+      High availability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="9">
+      <label class="md-nav__title" for="nav-2-8">
+        High availability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1. Introduction-HA/" title="1. Introduction HA" class="md-nav__link">
+      1. Introduction HA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-2" type="checkbox" id="nav-2-8-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-8-2">
+      1.HA Proxy   KeepAlive
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-8-2">
+        1.HA Proxy   KeepAlive
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.Intro/" title="1.Intro" class="md-nav__link">
+      1.Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2. Setup-HA-Proxy-&&-KeepAlive/" title="2. Setup HA Proxy && KeepAlive" class="md-nav__link">
+      2. Setup HA Proxy && KeepAlive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.HA-Proxy-OPS/" title="3.HA Proxy OPS" class="md-nav__link">
+      3.HA Proxy OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        4. HAProxy HTTP&Config
+      </label>
+    
+    <a href="./" title="4. HAProxy HTTP&Config" class="md-nav__link md-nav__link--active">
+      4. HAProxy HTTP&Config
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11_mo_hinh_giao_dich_trong_http" title="1.1. Mô hình giao dịch trong HTTP" class="md-nav__link">
+    1.1. Mô hình giao dịch trong HTTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12_http_request" title="1.2. HTTP request" class="md-nav__link">
+    1.2. HTTP request
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121_cac_noi_dung_trong_http_request" title="1.2.1 : Các nội dung trong HTTP Request" class="md-nav__link">
+    1.2.1 : Các nội dung trong HTTP Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122_request_header" title="1.2.2. Request Header" class="md-nav__link">
+    1.2.2. Request Header
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13_http_response" title="1.3 HTTP Response" class="md-nav__link">
+    1.3 HTTP Response
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-nav__link">
+      5.  HAproxy ACL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-3" type="checkbox" id="nav-2-8-3">
+    
+    <label class="md-nav__link" for="nav-2-8-3">
+      2. Octavia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-8-3">
+        2. Octavia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2. Octavia/1.Intro+Setup/" title="1.Intro+Setup" class="md-nav__link">
+      1.Intro+Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2. Octavia/2.Use-Octavia/" title="2.Use Octavia" class="md-nav__link">
+      2.Use Octavia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2. Octavia/3. Octavia-Keep-Alived/" title="3. Octavia Keep Alived" class="md-nav__link">
+      3. Octavia Keep Alived
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2. Octavia/4 .VIP-QOS/" title="4 .VIP QOS" class="md-nav__link">
+      4 .VIP QOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2. Octavia/5.Theory-Octavia-L7-Policy/" title="5.Theory Octavia L7 Policy" class="md-nav__link">
+      5.Theory Octavia L7 Policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2. Octavia/6. LAB-Octavia-L7-Policy/" title="6. LAB Octavia L7 Policy" class="md-nav__link">
+      6. LAB Octavia L7 Policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-4" type="checkbox" id="nav-2-8-4">
+    
+    <label class="md-nav__link" for="nav-2-8-4">
+      3. Pacemaker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-8-4">
+        3. Pacemaker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/1. Intro-Pacemaker/" title="1. Intro Pacemaker" class="md-nav__link">
+      1. Intro Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/2. Install-Pacemaker/" title="2. Install Pacemaker" class="md-nav__link">
+      2. Install Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/3. Use-Pacemaker/" title="3. Use Pacemaker" class="md-nav__link">
+      3. Use Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/4. Pacemaker-Apache-Active-Passive/" title="4. Pacemaker Apache Active Passive" class="md-nav__link">
+      4. Pacemaker Apache Active Passive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../3. Pacemaker/corosync/" title="Corosync" class="md-nav__link">
+      Corosync
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      Horizon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="10">
+      <label class="md-nav__title" for="nav-2-9">
+        Horizon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Horizon/Introduction-horizon/" title="OpenStack Dashboard - Horizon" class="md-nav__link">
+      OpenStack Dashboard - Horizon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Keystone
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-10">
+        Keystone
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/1. Introduction-Keystone/" title="1. Openstack Indentify ( Keystone )" class="md-nav__link">
+      1. Openstack Indentify ( Keystone )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/2.Install-Keystone/" title="Cài đặt và cấu hình Keystone" class="md-nav__link">
+      Cài đặt và cấu hình Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/3. Architecture-Keystone( additional )/" title="1. Kiến trúc trong Keystone ( bổ sung )" class="md-nav__link">
+      1. Kiến trúc trong Keystone ( bổ sung )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/4. Config-Keystone/" title="4. Config Keystone" class="md-nav__link">
+      4. Config Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/5. Keystone-Openstack-CLI/" title="Làm việc với Keystone qua CLI" class="md-nav__link">
+      Làm việc với Keystone qua CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/6. Keystone-CURL/" title="1. Application Credentials" class="md-nav__link">
+      1. Application Credentials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Keystone/7. Token-Keystone/" title="Tìm hiểu Token trong Openstack" class="md-nav__link">
+      Tìm hiểu Token trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11">
+    
+    <label class="md-nav__link" for="nav-2-11">
+      Neutron
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-11">
+        Neutron
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/1. Introduction-neutron/" title="Openstack networking - Neutron" class="md-nav__link">
+      Openstack networking - Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/10. OPS-Packet-Provider/" title="10. OPS Packet Provider" class="md-nav__link">
+      10. OPS Packet Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/11. VXLAN-Tunnel/" title="11. VXLAN Tunnel" class="md-nav__link">
+      11. VXLAN Tunnel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/12. VXLAN-Tunnel-Host-pair-OPS/" title="12. VXLAN Tunnel Host pair OPS" class="md-nav__link">
+      12. VXLAN Tunnel Host pair OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/2. Install Neutron Linux Bridge/" title="Cài đặt Neutron  -- Linux Bridge" class="md-nav__link">
+      Cài đặt Neutron  -- Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/2.1 . OVS-Self-Services/" title="2.1 . OVS Self Services" class="md-nav__link">
+      2.1 . OVS Self Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/2.2. OVS Self-Service-&-Provider/" title="2.2. OVS Self Service & Provider" class="md-nav__link">
+      2.2. OVS Self Service & Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/3. Neutron-CLI/" title="Làm việc với Neutron" class="md-nav__link">
+      Làm việc với Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/4. Neutron-Namespace-Agent/" title="TÌm hiểu Namepsace , DHCP, Agent trong OPS" class="md-nav__link">
+      TÌm hiểu Namepsace , DHCP, Agent trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/5.  Packet-Walkthrough-Linux-Bridge/" title="Neutron Traffic Flow trong Linux Bridge" class="md-nav__link">
+      Neutron Traffic Flow trong Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-nav__link">
+      Tìm hiểu bonding trong Centos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/7. VXLAN/" title="7. VXLAN" class="md-nav__link">
+      7. VXLAN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/8. OpenvSwitch-OPS/" title="Tìm hiểu OVS trong OPS" class="md-nav__link">
+      Tìm hiểu OVS trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Neutron/9. OPS-Packet-Self-Service/" title="Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack" class="md-nav__link">
+      Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      Nova
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-12">
+        Nova
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/1.Introduction-nova/" title="1.  Openstack Compute -Nova" class="md-nav__link">
+      1.  Openstack Compute -Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/2. Install-nova/" title="Cài đặt Nova - Openstack Compute" class="md-nav__link">
+      Cài đặt Nova - Openstack Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/3.Nova-Client&Curl/" title="Sử dụng Nova" class="md-nav__link">
+      Sử dụng Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/4. Nova-Instance-Work-flow/" title="4. Nova Instance Work flow" class="md-nav__link">
+      4. Nova Instance Work flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/5. Debug/" title="5. Debug" class="md-nav__link">
+      5. Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Nova/6. Config-section/" title="Một số tùy chọn khác trong nova.conf" class="md-nav__link">
+      Một số tùy chọn khác trong nova.conf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11_mo_hinh_giao_dich_trong_http" title="1.1. Mô hình giao dịch trong HTTP" class="md-nav__link">
+    1.1. Mô hình giao dịch trong HTTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12_http_request" title="1.2. HTTP request" class="md-nav__link">
+    1.2. HTTP request
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121_cac_noi_dung_trong_http_request" title="1.2.1 : Các nội dung trong HTTP Request" class="md-nav__link">
+    1.2.1 : Các nội dung trong HTTP Request
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122_request_header" title="1.2.2. Request Header" class="md-nav__link">
+    1.2.2. Request Header
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13_http_response" title="1.3 HTTP Response" class="md-nav__link">
+    1.3 HTTP Response
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <p>https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#1</p>
+<h2 id="1_so_qua_ve_http">1. Sơ qua về HTTP<a class="headerlink" href="#1_so_qua_ve_http" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Khi HAproxy chạy  với HTTP mode, các request và reponse đều được phân tích và gán các chỉ mục. vì vậy có thể xây dựng các toán matching  mọi thứ trong liên hệ 2 chiều này. </li>
+<li>Tuy nhiên, chúng ta cần hiểu làm sao HTTP request và reponse có thể hình thành  và HAproxy có thể bóc tách các nội dung các packet này ra để làm việc với các toán matching</li>
+</ul>
+<h3 id="11_mo_hinh_giao_dich_trong_http">1.1. Mô hình giao dịch trong HTTP<a class="headerlink" href="#11_mo_hinh_giao_dich_trong_http" title="Permanent link">&para;</a></h3>
+<ul>
+<li>HTTP Protocol hoạt động theo kiểu giao dịch kín .Điều này có nghĩa là mỗi request sẽ chỉ có duy nhật một response. Thông thường khi một kết nối TCP được thiết lập từ một máy khách đến server , một HTTP request được máy khách gửi qua kết nối này , server trả về kết quả về kết nối này được đóng. Sau đó một request mới được hình thành. </li>
+</ul>
+<pre><code>  [CON1] [REQ1] ... [RESP1] [CLO1] [CON2] [REQ2] ... [RESP2] [CLO2] ...
+</code></pre>
+
+<ul>
+<li>Với  mô hình , được gọi là chế độ "HTTP close", có nhiều kết nối được thiết lập. Kể từ khi một kết nối được đóng kể từ khi server trả về response , client sẽ không biết được chiều dài của nội dung này. </li>
+<li>Do nhờ tính giao dịch kín trong của giao thức này, chúng ta có thể cải tiến giúp chúng không đóng kết nối giữa 2 lần giao dịch với nhau. Tuy nhiên trong chế độ này, để chắc chắn các client không đợi chờ vô hạn các content được trả về, server phải quyết định sẽ gắn HEADER răng content này có dộ đài bao nhiêu</li>
+<li>Với phương pháp này sẽ giảm được độ trễ giữa các giao dịch , cần ít tài nguyên để xử lý ở bên server. Nó sẽ tốt hơn so với HTTP Close tuy nhiên đây không thật sự chính xác, bởi vì các client thường sẽ giới hạn nhiều kết nối đồng thời và kéo dài. Một cải tiến nưã đó chính là giao tiếp kiểu đường ống, nó sử dụng keep-alive, nhưng client không đợi phản hồi đầu tiên gửi đề nghị thứ hai.</li>
+<li>Điều này rõ ràng có thể có một lợi ích to lớn về hiệu suất vì độ trễ mạng được loại bỏ giữa các yêu cầu tiếp theo. Nhiều tác nhân HTTP không hỗ trợ chính xác đường ống vì không có cách nào để liên kết phản hồi với yêu cầu tương ứng trong HTTP. Vì lý do này, máy chủ bắt buộc phải trả lời theo đúng thứ tự như các yêu cầu đã nhận được.</li>
+<li>Cải tiến tiếp theo là chế độ ghép kênh,  được thực hiện trong HTTP / 2. Lần này, mỗi giao dịch được gán một mã định danh luồng duy nhất và tất cả các luồng được ghép qua một kết nối hiện có. Nhiều yêu cầu có thể được gửi song song bởi khách hàng và các phản hồi có thể đến theo bất kỳ thứ tự nào vì chúng cũng mang mã định danh luồng.</li>
+<li>
+<p>Mặc định HAproxy sử dụng keep-alive mode để duy trì kết nối : với mỗi kết nối nó  xử lý một request và một response. và  thoát khỏi kết nối sau đó thành lập nhanh một kết nối mới. </p>
+</li>
+<li>
+<p>HAproxy hỗ trợ 4 mode kết nối</p>
+<ul>
+<li>keep-alived : tất cả các request và response được xử lý</li>
+<li>tunnel : chỉ giao dịch đầu được xử lý, còn các giao dịch sau không được phân tích</li>
+<li>server close : kết nối hướng máy chủ bị đóng sau khi phản hồi.</li>
+<li>close  : kết bị đóng sau khi phản hồi.</li>
+</ul>
+</li>
+</ul>
+<h3 id="12_http_request">1.2. HTTP request<a class="headerlink" href="#12_http_request" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Nội dung của một HTTP Request thường sẽ như sau :</li>
+</ul>
+<pre><code>  Line     Contents
+  number
+     1     GET /serv/login.php?lang=en&amp;profile=2 HTTP/1.1
+     2     Host: www.mydomain.com
+     3     User-agent: my small browser
+     4     Accept: image/jpeg, image/gif
+     5     Accept: image/png
+</code></pre>
+
+<h4 id="121_cac_noi_dung_trong_http_request">1.2.1 : Các nội dung trong HTTP Request<a class="headerlink" href="#121_cac_noi_dung_trong_http_request" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Dòng 1 - yêu cầu : sẽ có 3 trường bao gồm : METHOD, URL , HTTP version  . Các trường trong này được xác định bởi dấu cách hoặc tab giữa chúng.</li>
+<li>URI  sẽ có 2 dạng :<ul>
+<li>"RELATIVE URI" : đường dẫn sẽ không kèm host đích <code>/serv/login.php?lang=en&amp;profile=2 HTTP/1.1</code></li>
+<li>"absolute URI" : hay được gọi là URL  : <code>http://.mydomain.com/serv/login.php?lang=en&amp;profile=2 HTTP/1.1</code>
+Với URL được thể hiện dưới hạng schema : <code>protocol://host:port/relative URI</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="122_request_header">1.2.2. Request Header<a class="headerlink" href="#122_request_header" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Request Header được bắt đầu tại dòng thứ 2 . Các header được xác định bởi dấu <code>:</code> với kiểu cặp pair <code>key : value</code> </li>
+<li>Vì vậy HAproxy sẽ can thiệp vào các header này bằng cách lập chỉ mục , kiểm tra value .
+Trích dẫn câu nói của tác giả : </li>
+</ul>
+<pre><code>so there is no reason to worry.about the way they could be written, but it is important not to accuse an
+application of being buggy if it does unusual, valid things.
+</code></pre>
+
+<pre><code>muốn dùng thì đừng phàn nàn những đều nó làm 
+</code></pre>
+
+<h3 id="13_http_response">1.3 HTTP Response<a class="headerlink" href="#13_http_response" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Nội dung của HTTP response sẽ như sau :</li>
+</ul>
+<pre><code>
+  Line     Contents
+  number
+     1     HTTP/1.1 200 OK
+     2     Content-length: 350
+     3     Content-Type: text/html
+</code></pre>
+
+<ul>
+<li>Đối với line 1 được gọi là response line bao gồm 3 trường</li>
+</ul>
+<pre><code>  - a version tag : HTTP/1.1
+  - a status code : 200
+  - a reason      : OK
+</code></pre>
+
+<ul>
+<li>Các status code trong HTTP Protocol</li>
+</ul>
+<pre><code> - 1xx = informational message to be skipped (e.g. 100, 101)
+ - 2xx = OK, content is following   (e.g. 200, 206)
+ - 3xx = OK, no content following   (e.g. 302, 304)
+ - 4xx = error caused by the client (e.g. 401, 403, 404)
+ - 5xx = error caused by the server (e.g. 500, 502, 503)
+</code></pre>
+
+<ul>
+<li>Để kiểm soát nội dung và trả response về cho HTTP Protocol , HAproxy cũng xây dựng list status code</li>
+</ul>
+<pre><code>
+  Code  When / reason
+   200  access to stats page, and when replying to monitoring requests
+   301  when performing a redirection, depending on the configured code
+   302  when performing a redirection, depending on the configured code
+   303  when performing a redirection, depending on the configured code
+   307  when performing a redirection, depending on the configured code
+   308  when performing a redirection, depending on the configured code
+   400  for an invalid or too large request
+   401  when an authentication is required to perform the action (when
+        accessing the stats page)
+   403  when a request is forbidden by a &quot;[block](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#block)&quot; ACL or &quot;[reqdeny](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#reqdeny)&quot; filter
+   408  when the request timeout strikes before the request is complete
+   500  when haproxy encounters an unrecoverable internal error, such as a
+        memory allocation failure, which should never happen
+   502  when the server returns an empty, invalid or incomplete response, or
+        when an &quot;[rspdeny](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#rspdeny)&quot; filter blocks the response.
+   503  when no server was available to handle the request, or in response to
+        monitoring requests which match the &quot;[monitor fail](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#monitor%20fail)&quot; condition
+   504  when the response timeout strikes before the server responds
+
+The error 4xx and 5xx codes above may be customized (see &quot;[errorloc](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#errorloc)&quot; in section
+4.2).
+</code></pre>
+
+<h2 id="2_cau_hinh_haproy">2. Cấu hình HAProy<a class="headerlink" href="#2_cau_hinh_haproy" title="Permanent link">&para;</a></h2>
+<h3 id="21_format_tap_tin_cau_hinh">2.1 . Format tập tin cấu hình<a class="headerlink" href="#21_format_tap_tin_cau_hinh" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Quá trình cấu hình của HAProxy bao gồm 3 nguồn tham số chính:<ul>
+<li>nhận các parameter từ command-line, các tham số này được ưu tiên</li>
+<li>phần "toàn cầu", thiết lập các tham số toàn quy trình</li>
+</ul>
+</li>
+</ul>
+<pre><code>global
+    # to have these messages end up in /var/log/haproxy.log you will
+    # need to:
+    #
+    # 1) configure syslog to accept network log events.  This is done
+    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    #    /etc/sysconfig/syslog
+    #
+    # 2) configure local2 events to go to the /var/log/haproxy.log
+    #   file. A line like the following can be added to
+    #   /etc/sysconfig/syslog
+    #
+    #    local2.*                       /var/log/haproxy.log
+    #
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000  ## : Thiết lập số kết nối đồng thời tối đa trên một process mà HAProxy chấp nhận xử lý
+    user        haproxy ## user khởi tạo process
+    group       haproxy ## nhóm user khởi tạo process
+    daemon              ## Nó  sử dụng thiết lập process haproxy ở chế độ chạy nền (background),
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+</code></pre>
+
+<ul>
+<li>các phần proxy có thể ở dạng "default", "listenner", "Frontend" </li>
+</ul>
+<pre><code>frontend  main *:5000
+    acl url_static       path_beg       -i /static /images /javascript /stylesheets
+    acl url_static       path_end       -i .jpg .gif .png .css .js
+
+    use_backend static          if url_static
+    default_backend             app
+
+#---------------------------------------------------------------------
+# static backend for serving up images, stylesheets and such
+#---------------------------------------------------------------------
+backend static
+    balance     roundrobin
+    server      static 127.0.0.1:4331 check
+
+#---------------------------------------------------------------------
+# round robin balancing between the various backends
+#---------------------------------------------------------------------
+backend app
+    balance     roundrobin
+    server  app1 127.0.0.1:5001 check
+    server  app2 127.0.0.1:5002 check
+    server  app3 127.0.0.1:5003 check
+    server  app4 127.0.0.1:5004 check
+
+</code></pre>
+
+<h3 id="22_quoting_and_escaping">2.2 . Quoting and escaping<a class="headerlink" href="#22_quoting_and_escaping" title="Permanent link">&para;</a></h3>
+<h3 id="23_bien_moi_truong">2.3: Biến môi trường<a class="headerlink" href="#23_bien_moi_truong" title="Permanent link">&para;</a></h3>
+<ul>
+<li>HAproxy hỗ trợ biến môi trường trong tập tin cấu hình của mình . Những biến này chỉ có thể đứng trong <code>" "</code> . Tên biến phải được bắt đầu bằng một đô la ("$") và được tùy ý kèm theo dấu ngoặc ("{}") .  Tên biến có thể chứa các ký tự chữ và số hoặc ký tự gạch dưới ("_") nhưng không nên bắt đầu bằng một chữ số.</li>
+</ul>
+<pre><code>bind &quot;fd@${FD_APP1}&quot;
+
+log &quot;${LOCAL_SYSLOG}:514&quot; local0 notice   # send to local server
+
+user &quot;$HAPROXY_USER&quot;
+</code></pre>
+
+<h3 id="24_time_format">2.4 : Time Format<a class="headerlink" href="#24_time_format" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Các mốc thời gian được  HAproxy hỗ trợ</li>
+</ul>
+<pre><code>  - us : microseconds. 1 microsecond = 1/1000000 second
+  - ms : milliseconds. 1 millisecond = 1/1000 second. This is the default.
+  - s  : seconds. 1s = 1000ms
+  - m  : minutes. 1m = 60s = 60000ms
+  - h  : hours.   1h = 60m = 3600s = 3600000ms
+  - d  : days.    1d = 24h = 1440m = 86400s = 86400000ms
+</code></pre>
+
+<h3 id="3_global_parameters">3. Global Parameters<a class="headerlink" href="#3_global_parameters" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Các keywork được global section hỗ trợ  <br />
+The following keywords are supported in the "global" section :</p>
+</li>
+<li>
+<p>Process management and security</p>
+</li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ca-base">ca-base</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#chroot">chroot</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#crt-base">crt-base</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#cpu-map">cpu-map</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#daemon">daemon</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#description">description</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#deviceatlas-json-file">deviceatlas-json-file</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#deviceatlas-log-level">deviceatlas-log-level</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#deviceatlas-separator">deviceatlas-separator</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#deviceatlas-properties-cookie">deviceatlas-properties-cookie</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#external-check">external-check</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#gid">gid</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#group">group</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#hard-stop-after">hard-stop-after</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#log">log</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#log-tag">log-tag</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#log-send-hostname">log-send-hostname</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#lua-load">lua-load</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#nbproc">nbproc</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#nbthread">nbthread</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#node">node</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#pidfile">pidfile</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#presetenv">presetenv</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#resetenv">resetenv</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#uid">uid</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ulimit-n">ulimit-n</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#user">user</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#setenv">setenv</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#stats">stats</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-default-bind-ciphers">ssl-default-bind-ciphers</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-default-bind-ciphersuites">ssl-default-bind-ciphersuites</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-default-bind-options">ssl-default-bind-options</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-default-server-ciphers">ssl-default-server-ciphers</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-default-server-ciphersuites">ssl-default-server-ciphersuites</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-default-server-options">ssl-default-server-options</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-dh-param-file">ssl-dh-param-file</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-server-verify">ssl-server-verify</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#unix-bind">unix-bind</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#unsetenv">unsetenv</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#51degrees-data-file">51degrees-data-file</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#51degrees-property-name-list">51degrees-property-name-list</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#51degrees-property-separator">51degrees-property-separator</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#51degrees-cache-size">51degrees-cache-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#wurfl-data-file">wurfl-data-file</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#wurfl-information-list">wurfl-information-list</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#wurfl-information-list-separator">wurfl-information-list-separator</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#wurfl-engine-mode">wurfl-engine-mode</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#wurfl-cache-size">wurfl-cache-size</a></li>
+<li>
+<p><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#wurfl-useragent-priority">wurfl-useragent-priority</a></p>
+</li>
+<li>
+<p>Performance tuning</p>
+</li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#max-spread-checks">max-spread-checks</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxconn">maxconn</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxconnrate">maxconnrate</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxcomprate">maxcomprate</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxcompcpuusage">maxcompcpuusage</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxpipes">maxpipes</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxsessrate">maxsessrate</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxsslconn">maxsslconn</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxsslrate">maxsslrate</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#maxzlibmem">maxzlibmem</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#noepoll">noepoll</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#nokqueue">nokqueue</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#nopoll">nopoll</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#nosplice">nosplice</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#nogetaddrinfo">nogetaddrinfo</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#noreuseport">noreuseport</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#profiling.tasks">profiling.tasks</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#spread-checks">spread-checks</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#server-state-base">server-state-base</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#server-state-file">server-state-file</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-engine">ssl-engine</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#ssl-mode-async">ssl-mode-async</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.buffers.limit">tune.buffers.limit</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.buffers.reserve">tune.buffers.reserve</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.bufsize">tune.bufsize</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.chksize">tune.chksize</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.comp.maxlevel">tune.comp.maxlevel</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.h2.header-table-size">tune.h2.header-table-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.h2.initial-window-size">tune.h2.initial-window-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.h2.max-concurrent-streams">tune.h2.max-concurrent-streams</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.http.cookielen">tune.http.cookielen</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.http.logurilen">tune.http.logurilen</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.http.maxhdr">tune.http.maxhdr</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.idletimer">tune.idletimer</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.lua.forced-yield">tune.lua.forced-yield</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.lua.maxmem">tune.lua.maxmem</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.lua.session-timeout">tune.lua.session-timeout</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.lua.task-timeout">tune.lua.task-timeout</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.lua.service-timeout">tune.lua.service-timeout</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.maxaccept">tune.maxaccept</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.maxpollevents">tune.maxpollevents</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.maxrewrite">tune.maxrewrite</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.pattern.cache-size">tune.pattern.cache-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.pipesize">tune.pipesize</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.rcvbuf.client">tune.rcvbuf.client</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.rcvbuf.server">tune.rcvbuf.server</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.recv_enough">tune.recv_enough</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.runqueue-depth">tune.runqueue-depth</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.sndbuf.client">tune.sndbuf.client</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.sndbuf.server">tune.sndbuf.server</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.cachesize">tune.ssl.cachesize</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.lifetime">tune.ssl.lifetime</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.force-private-cache">tune.ssl.force-private-cache</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.maxrecord">tune.ssl.maxrecord</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.default-dh-param">tune.ssl.default-dh-param</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.ssl-ctx-cache-size">tune.ssl.ssl-ctx-cache-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.ssl.capture-cipherlist-size">tune.ssl.capture-cipherlist-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.vars.global-max-size">tune.vars.global-max-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.vars.proc-max-size">tune.vars.proc-max-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.vars.reqres-max-size">tune.vars.reqres-max-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.vars.sess-max-size">tune.vars.sess-max-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.vars.txn-max-size">tune.vars.txn-max-size</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.zlib.memlevel">tune.zlib.memlevel</a></li>
+<li>
+<p><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#tune.zlib.windowsize">tune.zlib.windowsize</a></p>
+</li>
+<li>
+<p>Debugging</p>
+</li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#debug">debug</a></li>
+<li><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#quiet">quiet</a></li>
+</ul>
+<h2 id="4_proxies">4. Proxies<a class="headerlink" href="#4_proxies" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Các proxy có thể cấu hình tại các section</li>
+</ul>
+<pre><code> - defaults [&lt;name&gt;]
+ - frontend &lt;name&gt;
+ - backend  &lt;name&gt;
+ - listen   &lt;name&gt;
+</code></pre>
+
+<ul>
+<li>Default section có thể cấu hình mà các section khác thừa hưởng. </li>
+<li>Front-end section : xây dựng các listen socket, hỗ trợ nghe các kết nối từ client</li>
+<li>Back-end section : xây dựng các farm server, sau đó forward kết nối từ front-end đến server</li>
+<li>
+<p>Listener : xác định proxy hoàn chỉnh với front-end và  backend  . Nó thường hữu ích cho lưu lượng chỉ TCP.</p>
+</li>
+<li>
+<p>Tất cả các tên proxy có thể sử dụng từ chữ in hoa và chữ thường, chữ số, '-' (dấu gạch ngang), '_' (gạch dưới), '.' (dấu chấm) và ':' (dấu hai chấm). Tên ACL là phân biệt chữ hoa chữ thường, có nghĩa là "www" và "WWW" là hai proxy khác nhau.</p>
+</li>
+</ul>
+<h3 id="41_cac_metric_trong_proxy">4.1. Các Metric trong Proxy<a class="headerlink" href="#41_cac_metric_trong_proxy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-acl">acl</a></strong> <aclname> <criterion> [flags] [operator] <value> ...</li>
+</ul>
+<p>Declare or complete an access list.</p>
+<pre><code>acl invalid_src  src          0.0.0.0/7 224.0.0.0/3
+acl invalid_src  src_port     0:1023
+acl local_dst    hdr(host) -i localhost
+</code></pre>
+
+<ul>
+<li><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-appsession">appsession</a></strong> <cookie> len <length> timeout <holdtime> [request-learn] [prefix] [mode <path-parameters|query-string>]
+Define session stickiness on an existing application cookie.</li>
+</ul>
+<p>Arguments :</p>
+<p><cookie>   this is the name of the cookie used by the application and which
+           HAProxy will have to learn for each new session.</p>
+<p><length>   this is the max number of characters that will be memorized and
+           checked in each cookie value.</p>
+<p><holdtime> this is the time after which the cookie will be removed from
+           memory if unused. If no unit is specified, this time is in
+           milliseconds.</p>
+<p>request-learn
+           If this option is specified, then haproxy will be able to learn
+           the cookie found in the request in case the server does not
+           specify any in response. This is typically what happens with
+           PHPSESSID cookies, or when haproxy's session expires before
+           the application's session and the correct server is selected.
+           It is recommended to specify this option to improve reliability.</p>
+<p>prefix     When this option is specified, haproxy will match on the cookie
+           prefix (or URL parameter prefix). The appsession value is the
+           data following this prefix.</p>
+<pre><code>       Example :
+       appsession ASPSESSIONID len 64 timeout 3h prefix
+
+       This will match the cookie ASPSESSIONIDXXX=XXXX,
+       the appsession value will be XXX=XXXX.
+</code></pre>
+<p>mode       This option allows to change the URL parser mode.
+           2 modes are currently supported :
+           - path-parameters :
+             The parser looks for the appsession in the path parameters
+             part (each parameter is separated by a semi-colon), which is
+             convenient for JSESSIONID for example.
+             This is the default mode if the option is not set.
+           - query-string :
+             In this mode, the parser will look for the appsession in the
+             query string.</p>
+<ul>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-backlog">backlog</a></strong> <conns>
+Give hints to the system about the approximate listen backlog desired size</p>
+</li>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-balance">balance</a></strong> <algorithm> [ <arguments> ]</p>
+</li>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-balance%20url_param">balance url_param</a></strong> <param> [check_post]
+Define the load balancing algorithm to be used in a backend.</p>
+</li>
+</ul>
+<pre><code>balance roundrobin
+balance url_param userid
+balance url_param session_id check_post 64
+balance hdr(User-Agent)
+balance hdr(host)
+balance hdr(Host) use_domain_only
+
+````
+
+
+- **[bind](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-bind)** [&lt;address&gt;]:&lt;port_range&gt; [, ...] [param*]
+
+- **[bind](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-bind)** /&lt;path&gt; [, ...] [param*]
+Define one or several listening addresses and/or ports in a frontend.
+</code></pre>
+
+<p>listen http_proxy
+    bind :80,:443
+    bind 10.0.0.1:10080,10.0.0.1:10443
+    bind /var/run/ssl-frontend.sock user root mode 600 accept-proxy</p>
+<p>listen http_https_proxy
+    bind :80
+    bind :443 ssl crt /etc/haproxy/site.pem</p>
+<p>listen http_https_proxy_explicit
+    bind ipv6@:80
+    bind ipv4@public_ssl:443 ssl crt /etc/haproxy/site.pem
+    bind unix@ssl-frontend.sock user root mode 600 accept-proxy</p>
+<p>listen external_bind_app1
+    bind "fd@${FD_APP1}"</p>
+<pre><code>
+- **[bind-process](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-bind-process)** [ all | odd | even | &lt;process_num&gt;[-[&lt;process_num&gt;]] ] ...
+Limit visibility of an instance to a certain set of processes numbers.
+</code></pre>
+
+<p>listen app_ip1
+    bind 10.0.0.1:80
+    bind-process odd</p>
+<p>listen app_ip2
+    bind 10.0.0.2:80
+    bind-process even</p>
+<p>listen management
+    bind 10.0.0.3:80
+    bind-process 1 2 3 4</p>
+<p>listen management
+    bind 10.0.0.4:80
+    bind-process 1-4</p>
+<pre><code>
+- **[block](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-block)** { if | unless } &lt;condition&gt; (deprecated)
+Block a layer 7 request if/unless a condition is matched
+</code></pre>
+
+<p>acl invalid_src  src          0.0.0.0/7 224.0.0.0/3
+acl invalid_src  src_port     0:1023
+acl local_dst    hdr(host) -i localhost</p>
+<h1 id="block_is_deprecated_use_http-request_deny_instead">block is deprecated. Use http-request deny instead:<a class="headerlink" href="#block_is_deprecated_use_http-request_deny_instead" title="Permanent link">&para;</a></h1>
+<h1 id="block_if_invalid_src_local_dst">block if invalid_src || local_dst<a class="headerlink" href="#block_if_invalid_src_local_dst" title="Permanent link">&para;</a></h1>
+<p>http-request deny if invalid_src || local_dst</p>
+<pre><code>- **[capture cookie](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-capture%20cookie)** &lt;name&gt; len &lt;length&gt;
+Capture and log a cookie in the request and in the response.
+</code></pre>
+
+<p>capture cookie ASPSESSION len 32</p>
+<pre><code>- **[capture request header](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-capture%20request%20header)** `&lt;name&gt;` len` &lt;length&gt;`
+Capture and log the last occurrence of the specified request header.
+</code></pre>
+
+<p>capture request header Host len 15
+capture request header X-Forwarded-For len 15
+capture request header Referer len 15</p>
+<pre><code>- **[ clitimeout](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-clitimeout)** `&lt;timeout&gt; `(deprecated)
+Set the maximum inactivity time on the client side.
+- **[contimeout](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-contimeout)** `&lt;timeout&gt; `(deprecated)
+Set the maximum time to wait for a connection attempt to a server to succeed.
+- **[ cookie](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-cookie)** &lt;name&gt; [ rewrite | insert | prefix ] [ indirect ] [ nocache ] [ postonly ] [ preserve ] [ httponly ] [ secure ] [ domain &lt;domain&gt; ]* [ maxidle &lt;idle&gt; ] [ maxlife &lt;life&gt; ] [ dynamic ]
+Enable cookie-based persistence in a backend.
+
+- **[default-server](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-default-server)**[param*]
+Change default options for a server in a backend
+</code></pre>
+
+<p>default-server inter 1000 weight 13</p>
+<pre><code>- **[default_backend](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-default_backend)**` &lt;backend&gt;`
+Specify the backend to use when no &quot;[use_backend](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#use_backend)&quot; rule has been matched.
+</code></pre>
+
+<p>use_backend     dynamic  if  url_dyn
+use_backend     static   if  url_css url_img extension_img
+default_backend dynamic</p>
+<pre><code>- **[description](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-description)** `&lt;string&gt;`
+Describe a listen, frontend or backend.
+- **[enabled](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-enabled)**
+Enable a proxy, frontend or backend.
+- **[disabled](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-disabled)**
+Disable a proxy, frontend or backend.
+- **[dispatch](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-dispatch)** `&lt;address&gt;:&lt;port&gt;`
+Set a default server address
+- **[dynamic-cookie-key](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-dynamic-cookie-key)** &lt;string&gt;
+Set the dynamic cookie secret key for a backend.
+- **[errorfile](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-errorfile)**` &lt;code&gt; &lt;file&gt;`
+Return a file contents instead of errors generated by HAProxy
+</code></pre>
+
+<p>errorfile 400 /etc/haproxy/errorfiles/400badreq.http
+errorfile 408 /dev/null  # work around Chrome pre-connect bug
+errorfile 403 /etc/haproxy/errorfiles/403forbid.http
+errorfile 503 /etc/haproxy/errorfiles/503sorry.http</p>
+<pre><code>
+- **[errorloc](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-errorloc)** `&lt;code&gt; &lt;url&gt;`
+- **[errorloc302](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-errorloc302)**`&lt;code&gt; &lt;url&gt;`
+Return an HTTP redirection to a URL instead of errors generated by HAProxy
+
+- **[email-alert from](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-email-alert%20from)** `&lt;emailaddr&gt;`
+Declare the from email address to be used in both the envelope and header of email alerts. This is the address that email alerts are sent from.
+- **[email-alert level](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-email-alert%20level)** `&lt;level&gt;`
+Declare the maximum log level of messages for which email alerts will besent. This acts as a filter on the sending of email alerts.
+**[email-alert mailers](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-email-alert%20mailers)** `&lt;mailersect&gt;`
+Declare the mailers to be used when sending email alerts
+- **[email-alert myhostname](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-email-alert%20myhostname)** `&lt;hostname&gt;`
+Declare the to hostname address to be used when communicating with mailers.
+- **[email-alert to](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-email-alert%20to)** `&lt;emailaddr&gt;`
+Declare both the recipient address in the envelope and to address in the
+header of email alerts. This is the address that email alerts are sent to.
+- **[force-persist](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-force-persist)** { if | unless } `&lt;condition&gt;`
+Declare a condition to force persistence on down servers
+- **[filter](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-filter)** `&lt;name&gt; `[param*]
+Add the filter &lt;name&gt; in the filter list attached to the proxy.
+</code></pre>
+
+<p>listen
+  bind *:80</p>
+<p>filter trace name BEFORE-HTTP-COMP
+  filter compression
+  filter trace name AFTER-HTTP-COMP</p>
+<p>compression algo gzip
+  compression offload</p>
+<p>server srv1 192.168.0.1:80</p>
+<pre><code>
+- **[fullconn](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-fullconn)** &lt;conns&gt;
+Specify at what backend load the servers will reach their maxconn
+</code></pre>
+
+<p>backend dynamic
+   fullconn   10000
+   server     srv1   dyn1:80 minconn 100 maxconn 1000
+   server     srv2   dyn2:80 minconn 100 maxconn 1000</p>
+<pre><code>
+- **[grace](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-grace)** `&lt;time&gt;`
+Maintain a proxy operational for some time after a soft stop
+- **[hash-balance-factor](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-hash-balance-factor)** `&lt;factor&gt;`
+Specify the balancing factor for bounded-load consistent hashing
+- **[hash-type](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-hash-type)** &lt;method&gt; `&lt;function&gt; &lt;modifier&gt;`
+Specify a method to use for mapping hashes to servers
+
+### HTTP check 
+
+- **[http-check disable-on-404](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-check%20disable-on-404)**
+Enable a maintenance mode upon HTTP/404 response to health-checks
+- **[http-check expect](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-check%20expect)** [!] `&lt;match&gt; &lt;pattern&gt;`
+Make HTTP health checks consider response contents or specific status codes
+</code></pre>
+
+<h1 id="only_accept_status_200_as_valid">only accept status 200 as valid<a class="headerlink" href="#only_accept_status_200_as_valid" title="Permanent link">&para;</a></h1>
+<p>http-check expect status 200</p>
+<h1 id="consider_sql_errors_as_errors">consider SQL errors as errors<a class="headerlink" href="#consider_sql_errors_as_errors" title="Permanent link">&para;</a></h1>
+<p>http-check expect ! string SQL\ Error</p>
+<h1 id="consider_status_5xx_only_as_errors">consider status 5xx only as errors<a class="headerlink" href="#consider_status_5xx_only_as_errors" title="Permanent link">&para;</a></h1>
+<p>http-check expect ! rstatus ^5</p>
+<h1 id="check_that_we_have_a_correct_hexadecimal_tag_before_html">check that we have a correct hexadecimal tag before /html<a class="headerlink" href="#check_that_we_have_a_correct_hexadecimal_tag_before_html" title="Permanent link">&para;</a></h1>
+<p>http-check expect rstring <!--tag:[0-9a-f]*--></html></p>
+<pre><code>- **[http-check send-state](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-check%20send-state)**
+Enable emission of a state header with HTTP health checks
+- **[http-request](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-request)**` &lt;action&gt; [options...]` [ { if | unless } &lt;condition&gt; ]
+Access control for Layer 7 requests
+</code></pre>
+
+<p>acl nagios src 192.168.129.3
+acl local_net src 192.168.0.0/16
+acl auth_ok http_auth(L1)</p>
+<p>http-request allow if nagios
+http-request allow if local_net auth_ok
+http-request auth realm Gimme if local_net auth_ok
+http-request deny</p>
+<pre><code>
+- **[http-response](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-response%20add-acl)**
+More ........... : https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4-http-request
+
+- **[http-reuse](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-reuse)** { never | safe | aggressive | always }
+Declare how idle HTTP connections may be shared between requests
+- **[http-send-name-header](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-http-send-name-header)** [&lt;header&gt;]
+Add the server name to a request. Use the header string given by &lt;header&gt;
+- **[id](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-id)** &lt;value&gt;
+Set a persistent ID to a proxy.
+- **[ignore-persist](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-ignore-persist)** { if | unless } &lt;condition&gt;
+Declare a condition to ignore persistence
+</code></pre>
+
+<p>acl url_static  path_beg         /static /images /img /css
+acl url_static  path_end         .gif .png .jpg .css .js
+ignore-persist  if url_static</p>
+<pre><code>
+- **[load-server-state-from-file](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-load-server-state-from-file)** { global | local | none }
+Allow seamless reload of HAProxy
+- **[log global](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-log%20global)**
+ - **[log](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-log)** &lt;address&gt; [len &lt;length&gt;] [format &lt;format&gt;] &lt;facility&gt; [&lt;level&gt; [&lt;minlevel&gt;]]
+- **[no log](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20log)**
+Enable per-instance logging of events and traffic.
+- **[max-keep-alive-queue](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-max-keep-alive-queue)** &lt;value&gt;
+Set the maximum server queue size for maintaining keep-alive connections
+- **[max-session-srv-conns](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-max-session-srv-conns)** &lt;nb&gt;
+Set the maximum number of outgoing connections we can keep idling for a given
+client session. The default is 5 (it precisely equals MAX_SRV_LIST which is
+defined at build time).
+
+- **[mode](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-mode)** { tcp|http|health }
+Set the running mode or protocol of the instance
+</code></pre>
+
+<p>defaults http_instances
+    mode http</p>
+<pre><code>- **[monitor fail](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-monitor%20fail)** { if | unless } `&lt;condition&gt;`
+Add a condition to report a failure to a monitor HTTP request.
+</code></pre>
+
+<p>frontend www
+   mode http
+   acl site_dead nbsrv(dynamic) lt 2
+   acl site_dead nbsrv(static)  lt 2
+   monitor-uri   /site_alive
+   monitor fail  if site_dead</p>
+<pre><code>
+
+
+
+### OPTION Cheat sheet Haproxy
+
+- **[option abortonclose](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20abortonclose)**
+ **[no option abortonclose](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20abortonclose)**
+Enable or disable early dropping of aborted requests pending in queues.
+
+- **[option accept-invalid-http-request](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20accept-invalid-http-request)**
+**[no option accept-invalid-http-request](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20accept-invalid-http-request)**
+Enable or disable relaxing of HTTP request parsing
+
+- **[option accept-invalid-http-response](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20accept-invalid-http-response)**
+ **[no option accept-invalid-http-response](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20accept-invalid-http-response)**
+Enable or disable relaxing of HTTP response parsing
+
+
+- **[option allbackups](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20allbackups)**
+ **[no option allbackups](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20allbackups)**
+Use either all backup servers at a time or only the first one
+By default, the first operational backup server gets all traffic when normal servers are all down. Sometimes, it may be preferred to use multiple backups at once, because one will not be enough. When &quot;[option allbackups](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20allbackups)&quot; is enabled,
+the load balancing will be performed among all backup servers when all normal ones are unavailable. The same load balancing algorithm will be used and the
+servers' weights will be respected. Thus, there will not be any priority order between the backup servers anymore.
+
+
+- **[option checkcache](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20checkcache)**
+**[no option checkcache](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20checkcache)**
+Analyze all server responses and block responses with cacheable cookies
+
+
+- **[option clitcpka](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20clitcpka)**
+**[no option clitcpka](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20clitcpka)**
+Enable or disable the sending of TCP keepalive packets on the client side
+
+- **[option contstats](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20contstats)**
+Enable continuous traffic statistics updates
+- **[option dontlog-normal](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20dontlog-normal)**
+**[no option dontlog-normal](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20dontlog-normal)**
+Enable or disable logging of normal, successful connections
+
+- **[option dontlognull](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20dontlognull)**
+**[no option dontlognull](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20dontlognull)**
+Enable or disable logging of null connections. In certain environments, there are components which will regularly connect to
+various systems to ensure that they are still alive. It can be the case from
+another load balancer as well as from monitoring systems. By
+
+- **[option forwardfor](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20forwardfor)** [ `except  &lt;network&gt; ] [ header &lt;name&gt; ] [ if-none ]`
+Enable insertion of the X-Forwarded-For header to requests sent to servers. Since HAProxy works in reverse-proxy mode, the servers see its IP address as their client address. This is sometimes annoying when the client's IP address
+is expected in server logs. To solve this problem, the well-known HTTP header &quot;X-Forwarded-For&quot; may be added by HAProxy to all requests sent to the server. This header contains a value representing the client's IP address. Since this
+header is always appended at the end of the existing header list, the server must be configured to always use the last occurrence of this header only. See the server's manual to find how to enable use of this standard header. Note
+that only the last occurrence of the header must be used, since it is really possible that the client has already brought one.
+
+
+</code></pre>
+
+<h1 id="public_http_address_also_used_by_stunnel_on_the_same_machine">Public HTTP address also used by stunnel on the same machine<a class="headerlink" href="#public_http_address_also_used_by_stunnel_on_the_same_machine" title="Permanent link">&para;</a></h1>
+<p>frontend www
+    mode http
+    option forwardfor except 127.0.0.1  # stunnel already adds the header</p>
+<h1 id="those_servers_want_the_ip_address_in_x-client">Those servers want the IP Address in X-Client<a class="headerlink" href="#those_servers_want_the_ip_address_in_x-client" title="Permanent link">&para;</a></h1>
+<p>backend www
+    mode http
+    option forwardfor header X-Client</p>
+<pre><code>
+
+- **[option http-buffer-request](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-buffer-request)**
+**[no option http-buffer-request](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-buffer-request)**
+Enable or disable waiting for whole HTTP request body before proceeding ( not useful ) 
+
+- **[option http-ignore-probes](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-ignore-probes)**
+**[no option http-ignore-probes](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-ignore-probes)**
+Enable or disable logging of null connections and request timeouts
+
+
+- **[option http-keep-alive](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-keep-alive)**
+**[no option http-keep-alive](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-keep-alive)**
+Enable or disable HTTP keep-alive from client to server. By default HAProxy operates in keep-alive mode with regards to persistent connections: for each connection it processes each request and response, and leaves the connection idle on both sides between the end of a response and the start of a new request. This mode may be changed by several options such as &quot;[option http-server-close](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-server-close)&quot;, &quot;[option httpclose](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20httpclose)&quot; or &quot;[option http-tunnel](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-tunnel)&quot;.
+This option allows to set back the keep-alive mode, which can be useful when another mode was used in a defaults section.
+
+- **[option http-no-delay](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-no-delay)**
+**[no option http-no-delay](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-no-delay)**
+
+Instruct the system to favor low interactive delays over performance in HTTP
+
+- **[option http-server-close](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-server-close)**
+**[no option http-server-close](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-server-close)**
+Enable or disable HTTP connection closing on the server side.  By default HAProxy operates in keep-alive mode with regards to persistent connections: for each connection it processes each request and response, and
+leaves the connection idle on both sides between the end of a response and
+the start of a new request. This mode may be changed by several options such
+as &quot;[option http-server-close](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-server-close)&quot;, &quot;[option httpclose](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20httpclose)&quot; or &quot;[option http-tunnel](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-tunnel)&quot;.
+Setting &quot;[option http-server-close](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-server-close)&quot; enables HTTP connection-close mode on the server side while keeping the ability to support HTTP keep-alive and pipelining on the client side. This provides the lowest latency on the client side (slow network) and the fastest session reuse on the server side to save server resources, similarly to &quot;[option httpclose](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20httpclose)&quot;.  It also permits non-keepalive capable servers to be served in keep-alive mode to the clients if they conform to the requirements of RFC7230. Please note that some servers do not always conform to those requirements when they see &quot;Connection: close&quot;
+in the request. The effect will be that keep-alive will never be used. A workaround consists in enabling &quot;[option http-pretend-keepalive](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-pretend-keepalive)&quot;.
+
+- **[option http-tunnel](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-tunnel)**
+**[no option http-tunnel](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-tunnel)** 
+Disable or enable HTTP connection processing after first transaction. By default HAProxy operates in keep-alive mode with regards to persistent connections: for each connection it processes each request and response, and leaves the connection idle on both sides between the end of a response and the start of a new request. This mode may be changed by several options such as &quot;[option http-server-close](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-server-close)&quot;, &quot;[option httpclose](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20httpclose)&quot; or &quot;[option http-tunnel](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http-tunnel)&quot;.
+
+- **[option http-use-proxy-header](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-use-proxy-header)**
+**[no option http-use-proxy-header](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-use-proxy-header)**
+Make use of non-standard Proxy-Connection header instead of Connection. 
+
+- **[option http-use-htx](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http-use-htx)**
+**[no option http-use-htx](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http-use-htx)**
+Switch to the new HTX internal representation for HTTP protocol elements
+
+- **[option httpchk](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20httpchk)**
+**[option httpchk](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20httpchk)** &lt;uri&gt;
+**[option httpchk](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20httpchk)** &lt;method&gt; &lt;uri&gt;
+**[option httpchk](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20httpchk)** &lt;method&gt; &lt;uri&gt; &lt;version&gt;
+Enable HTTP protocol to check on the servers health
+</code></pre>
+
+<p>backend https_relay
+    mode tcp
+    option httpchk OPTIONS * HTTP/1.1\r\nHost:\ www
+    server apache1 192.168.1.1:443 check port 80</p>
+<pre><code>
+- **[option httplog](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20httplog)** [ clf ]
+Enable logging of HTTP request, session state and timers
+- **[option http_proxy](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20http_proxy)**
+**[no option http_proxy](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20http_proxy)**
+Enable or disable plain HTTP proxy mode. It sometimes happens that people need a pure HTTP proxy which understands basic proxy requests without caching nor any fancy feature. In this case, it may be worth setting up an HAProxy instance with the &quot;[option http_proxy](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20http_proxy)&quot;
+set. In this mode, no server is declared, and the connection is forwarded to the IP address and port found in the URL after the &quot;http://&quot; scheme.
+
+
+- **[option independent-streams](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20independent-streams)**
+**[no option independent-streams](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20independent-streams)**
+Enable or disable independent timeout processing for both directions. By default, when data is sent over a socket, both the write timeout and the read timeout for that socket are refreshed, because we consider that there is activity on that socket, and we have no other means of guessing if we should receive data or not.
+
+- **[option ldap-check](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20ldap-check)**
+Use LDAPv3 health checks for server testing
+
+- **[option log-health-checks](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20log-health-checks)**
+**[no option log-health-checks](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20log-health-checks)**
+Enable or disable logging of health checks status updates
+
+- **[option log-separate-errors](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20log-separate-errors)**
+**[no option log-separate-errors](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20log-separate-errors)**
+Change log level for non-completely successful connections
+
+- **[option logasap](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20logasap)**
+**[no option logasap](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20logasap)**
+Enable or disable early logging of HTTP requests
+
+- **[option mysql-check](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20mysql-check)** [ user &lt;username&gt; [ post-41 ] ]
+Use MySQL health checks for server testing
+
+- **[option persist](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20persist)**
+**[no option persist](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20persist)**
+Enable or disable forced persistence on down servers. When an HTTP request reaches a backend with a cookie which references a dead server, by default it is redispatched to another server. It is possible to force the request to be sent to the dead server first using &quot;[option persist](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20persist)&quot;
+if absolutely needed. A common use case is when servers are under extreme load and spend their time flapping. In this case, the users would still be directed to the server they opened the session on, in the hope they would be correctly served. It is recommended to use &quot;[option redispatch](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20redispatch)&quot; in conjunction with this option so that in the event it would not be possible to connect to the server at all (server definitely dead), the client would finally be
+redirected to another valid server.
+
+- **[option socket-stats](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20socket-stats)**
+**[no option socket-stats](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-no%20option%20socket-stats)**
+Enable or disable collecting &amp; providing separate statistics for each socket.
+
+- **[option ssl-hello-chk](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20ssl-hello-chk)**
+Use SSLv3 client hello health checks for server testing.When some SSL-based protocols are relayed in TCP mode through HAProxy, it is
+possible to test that the server correctly talks SSL instead of just testing
+that it accepts the TCP connection. When &quot;[option ssl-hello-chk](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20ssl-hello-chk)&quot; is set, pure SSLv3 client hello messages are sent once the connection is established to the server, and the response is analyzed to find an SSL server hello message. The server is considered valid only when the response contains this server hello message.
+
+- **[option tcp-check](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20tcp-check)**
+Perform health checks using tcp-check send/expect sequences. This health check method is intended to be combined with &quot;[tcp-check](https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#option%20tcp-check)&quot; command
+lists in order to support send/expect types of health check sequences.
+</code></pre>
+
+<h1 id="perform_a_pop_check_analyze_only_servers_banner">perform a POP check (analyze only server's banner)<a class="headerlink" href="#perform_a_pop_check_analyze_only_servers_banner" title="Permanent link">&para;</a></h1>
+<p>option tcp-check
+tcp-check expect string +OK\ POP3\ ready comment POP\ protocol</p>
+<h1 id="perform_an_imap_check_analyze_only_servers_banner">perform an IMAP check (analyze only server's banner)<a class="headerlink" href="#perform_an_imap_check_analyze_only_servers_banner" title="Permanent link">&para;</a></h1>
+<p>option tcp-check
+tcp-check expect string *\ OK\ IMAP4\ ready comment IMAP\ protocol</p>
+<h1 id="look_for_the_redis_master_server_after_ensuring_it_speaks_well">look for the redis master server after ensuring it speaks well<a class="headerlink" href="#look_for_the_redis_master_server_after_ensuring_it_speaks_well" title="Permanent link">&para;</a></h1>
+<h1 id="redis_protocol_then_it_exits_properly">redis protocol, then it exits properly.<a class="headerlink" href="#redis_protocol_then_it_exits_properly" title="Permanent link">&para;</a></h1>
+<h1 id="send_a_command_then_analyze_the_response_3_times">(send a command then analyze the response 3 times)<a class="headerlink" href="#send_a_command_then_analyze_the_response_3_times" title="Permanent link">&para;</a></h1>
+<p>option tcp-check
+tcp-check comment PING\ phase
+tcp-check send PING\r\n
+tcp-check expect string +PONG
+tcp-check comment role\ check
+tcp-check send info\ replication\r\n
+tcp-check expect string role:master
+tcp-check comment QUIT\ phase
+tcp-check send QUIT\r\n
+tcp-check expect string +OK</p>
+<p>forge a HTTP request, then analyze the response
+(send many headers before analyzing)
+option tcp-check
+tcp-check comment forge\ and\ send\ HTTP\ request
+tcp-check send HEAD\ /\ HTTP/1.1\r\n
+tcp-check send Host:\ www.mydomain.com\r\n
+tcp-check send User-Agent:\ HAProxy\ tcpcheck\r\n
+tcp-check send \r\n
+tcp-check expect rstring HTTP/1..\ (2..|3..) comment check\ HTTP\ response
+```</p>
+<ul>
+<li><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20tcpka">option tcpka</a></strong></li>
+</ul>
+<p>Enable or disable the sending of TCP keepalive packets on both sides</p>
+<ul>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-option%20tcplog">option tcplog</a></strong>
+Enable advanced logging of TCP connections with session state and timers</p>
+</li>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20server">timeout server</a></strong> <timeout>
+<strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20srvtimeout">timeout srvtimeout</a></strong> <timeout> (deprecated)
+Set the maximum inactivity time on the server side.</p>
+</li>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20queue">timeout queue</a></strong> <timeout>
+Set the maximum time to wait in the queue for a connection slot to be free</p>
+</li>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20http-request">timeout http-request</a></strong> <timeout>
+Set the maximum allowed time to wait for a complete HTTP request</p>
+</li>
+<li>
+<p><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20http-keep-alive">timeout http-keep-alive</a></strong> <timeout>
+Set the maximum allowed time to wait for a new HTTP request to appear</p>
+</li>
+<li><strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20client">timeout client</a></strong> <timeout>
+<strong><a href="https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-timeout%20clitimeout">timeout clitimeout</a></strong> <timeout> (deprecated)
+Set the maximum inactivity time on the client side.</li>
+</ul>
+<h3 id="dang_update">dang update<a class="headerlink" href="#dang_update" title="Permanent link">&para;</a></h3>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../3.HA-Proxy-OPS/" title="3.HA Proxy OPS" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                3.HA Proxy OPS
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                5.  HAproxy ACL
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            nguyenhungsync
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.9e1f3b71.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

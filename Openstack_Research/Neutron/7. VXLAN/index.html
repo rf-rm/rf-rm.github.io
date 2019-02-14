@@ -1,0 +1,1805 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="rf-rm Team">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>7. VXLAN - rf-rm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#tim_hieu_vxlan" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../.." title="rf-rm" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                rf-rm
+              </span>
+              <span class="md-header-nav__topic">
+                7. VXLAN
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../.." title="rf-rm" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    rf-rm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Remove Everything with `rm-rf /`" class="md-nav__link">
+      Remove Everything with `rm-rf /`
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Openstack Research
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Openstack Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../1. Intro Cloud Computing/" title="Cloud Computing and Openstack" class="md-nav__link">
+      Cloud Computing and Openstack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../2.install-pack-stack/" title="2.install pack stack" class="md-nav__link">
+      2.install pack stack
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Readme/" title="Readme" class="md-nav__link">
+      Readme
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      Advance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="5">
+      <label class="md-nav__title" for="nav-2-4">
+        Advance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/1. Key-Rotate-&-Decrypt/" title="Fernet và Rotate trong OPS" class="md-nav__link">
+      Fernet và Rotate trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/10. Limit-CPU-Resource/" title="10. Limit CPU Resource" class="md-nav__link">
+      10. Limit CPU Resource
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/11. Metadata/" title="11. Metadata" class="md-nav__link">
+      11. Metadata
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/12. Cloud-init/" title="12. Cloud init" class="md-nav__link">
+      12. Cloud init
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/13. Cloud-init-Script/" title="13. Cloud init Script" class="md-nav__link">
+      13. Cloud init Script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/14. QOS - Neutron/" title="14. QOS   Neutron" class="md-nav__link">
+      14. QOS   Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/15. QOS - Cinder/" title="15. QOS   Cinder" class="md-nav__link">
+      15. QOS   Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/16. Cinder-Backup-NFS/" title="16. Cinder Backup NFS" class="md-nav__link">
+      16. Cinder Backup NFS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/17. Transfer-&-Extend-Root-Volume/" title="17. Transfer & Extend Root Volume" class="md-nav__link">
+      17. Transfer & Extend Root Volume
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/18. L3-Agent-HA-Compute/" title="18. L3 Agent HA Compute" class="md-nav__link">
+      18. L3 Agent HA Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/2.RabbitMQ-&-API-Endpoint/" title="2.RabbitMQ & API Endpoint" class="md-nav__link">
+      2.RabbitMQ & API Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/3. Log/" title="3. Log" class="md-nav__link">
+      3. Log
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/4. Setup-noVNC/" title="noVNC trong OPS" class="md-nav__link">
+      noVNC trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/5. Nova-Compute-Serice-&-RabbitMQ/" title="5. Nova Compute Serice & RabbitMQ" class="md-nav__link">
+      5. Nova Compute Serice & RabbitMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/6. Placement-API-&-Nova-Conductor/" title="6. Placement API & Nova Conductor" class="md-nav__link">
+      6. Placement API & Nova Conductor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.1.  Resource-Management-OPS/" title="Resource Management trong OPS" class="md-nav__link">
+      Resource Management trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.2 . Nova-Scheduler-&-Host-Aggreaggregate/" title="1. Nova-scheduler" class="md-nav__link">
+      1. Nova-scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/7.3. Lab-Filter-Scheduler/" title="7.3. Lab Filter Scheduler" class="md-nav__link">
+      7.3. Lab Filter Scheduler
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/8. Resize-instance/" title="8. Resize instance" class="md-nav__link">
+      8. Resize instance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Advance/9. Rescue-instance/" title="1. Nova-rescue" class="md-nav__link">
+      1. Nova-rescue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      Barbican
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="6">
+      <label class="md-nav__title" for="nav-2-5">
+        Barbican
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barbican/1. Intro-Setup/" title="1. Intro Setup" class="md-nav__link">
+      1. Intro Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Barbican/2. Command/" title="2. Command" class="md-nav__link">
+      2. Command
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      Cinder
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="7">
+      <label class="md-nav__title" for="nav-2-6">
+        Cinder
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/1. Introduction-cinder/" title="OpenStack Block Storage - Cinder" class="md-nav__link">
+      OpenStack Block Storage - Cinder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/2. Cinder-Disk-Work-Flow/" title="2. Cinder Disk Work Flow" class="md-nav__link">
+      2. Cinder Disk Work Flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/3. Install-Cinder-LVM/" title="3. Install Cinder LVM" class="md-nav__link">
+      3. Install Cinder LVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/4. Basic-Command/" title="4. Basic Command" class="md-nav__link">
+      4. Basic Command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/5. Install-Multi-Backend/" title="5. Install Multi Backend" class="md-nav__link">
+      5. Install Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/6. Filtering-Multi-Backend/" title="6. Filtering Multi Backend" class="md-nav__link">
+      6. Filtering Multi Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Cinder/7. Cinder-More/" title="7. Cinder More" class="md-nav__link">
+      7. Cinder More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      Glance
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="8">
+      <label class="md-nav__title" for="nav-2-7">
+        Glance
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/1. Introduction-Glance/" title="OPENSTACK IMAGE - GLANCE" class="md-nav__link">
+      OPENSTACK IMAGE - GLANCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/2. Install Glance/" title="Cài đặt Glance - Openstack IMAGE" class="md-nav__link">
+      Cài đặt Glance - Openstack IMAGE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/3. Openstack-Glance-&-CURL/" title="Làm việc với Glance" class="md-nav__link">
+      Làm việc với Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/4. Config/" title="Tìm hiểu cấu hình cơ bản trong Glance" class="md-nav__link">
+      Tìm hiểu cấu hình cơ bản trong Glance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Glance/5. Glance-Advanced/" title="5. Glance Advanced" class="md-nav__link">
+      5. Glance Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8">
+    
+    <label class="md-nav__link" for="nav-2-8">
+      High availability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="9">
+      <label class="md-nav__title" for="nav-2-8">
+        High availability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1. Introduction-HA/" title="1. Introduction HA" class="md-nav__link">
+      1. Introduction HA
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-2" type="checkbox" id="nav-2-8-2">
+    
+    <label class="md-nav__link" for="nav-2-8-2">
+      1.HA Proxy   KeepAlive
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-8-2">
+        1.HA Proxy   KeepAlive
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/1.Intro/" title="1.Intro" class="md-nav__link">
+      1.Intro
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/2. Setup-HA-Proxy-&&-KeepAlive/" title="2. Setup HA Proxy && KeepAlive" class="md-nav__link">
+      2. Setup HA Proxy && KeepAlive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/3.HA-Proxy-OPS/" title="3.HA Proxy OPS" class="md-nav__link">
+      3.HA Proxy OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/4. HAProxy-HTTP&Config/" title="4. HAProxy HTTP&Config" class="md-nav__link">
+      4. HAProxy HTTP&Config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/1.HA-Proxy---KeepAlive/5.  HAproxy-ACL/" title="5.  HAproxy ACL" class="md-nav__link">
+      5.  HAproxy ACL
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-3" type="checkbox" id="nav-2-8-3">
+    
+    <label class="md-nav__link" for="nav-2-8-3">
+      2. Octavia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-8-3">
+        2. Octavia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/1.Intro+Setup/" title="1.Intro+Setup" class="md-nav__link">
+      1.Intro+Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/2.Use-Octavia/" title="2.Use Octavia" class="md-nav__link">
+      2.Use Octavia
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/3. Octavia-Keep-Alived/" title="3. Octavia Keep Alived" class="md-nav__link">
+      3. Octavia Keep Alived
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/4 .VIP-QOS/" title="4 .VIP QOS" class="md-nav__link">
+      4 .VIP QOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/5.Theory-Octavia-L7-Policy/" title="5.Theory Octavia L7 Policy" class="md-nav__link">
+      5.Theory Octavia L7 Policy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/2. Octavia/6. LAB-Octavia-L7-Policy/" title="6. LAB Octavia L7 Policy" class="md-nav__link">
+      6. LAB Octavia L7 Policy
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-8-4" type="checkbox" id="nav-2-8-4">
+    
+    <label class="md-nav__link" for="nav-2-8-4">
+      3. Pacemaker
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-8-4">
+        3. Pacemaker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/1. Intro-Pacemaker/" title="1. Intro Pacemaker" class="md-nav__link">
+      1. Intro Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/2. Install-Pacemaker/" title="2. Install Pacemaker" class="md-nav__link">
+      2. Install Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/3. Use-Pacemaker/" title="3. Use Pacemaker" class="md-nav__link">
+      3. Use Pacemaker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/4. Pacemaker-Apache-Active-Passive/" title="4. Pacemaker Apache Active Passive" class="md-nav__link">
+      4. Pacemaker Apache Active Passive
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../High-availability/3. Pacemaker/corosync/" title="Corosync" class="md-nav__link">
+      Corosync
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-9" type="checkbox" id="nav-2-9">
+    
+    <label class="md-nav__link" for="nav-2-9">
+      Horizon
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="10">
+      <label class="md-nav__title" for="nav-2-9">
+        Horizon
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Horizon/Introduction-horizon/" title="OpenStack Dashboard - Horizon" class="md-nav__link">
+      OpenStack Dashboard - Horizon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      Keystone
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="11">
+      <label class="md-nav__title" for="nav-2-10">
+        Keystone
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/1. Introduction-Keystone/" title="1. Openstack Indentify ( Keystone )" class="md-nav__link">
+      1. Openstack Indentify ( Keystone )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/2.Install-Keystone/" title="Cài đặt và cấu hình Keystone" class="md-nav__link">
+      Cài đặt và cấu hình Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/3. Architecture-Keystone( additional )/" title="1. Kiến trúc trong Keystone ( bổ sung )" class="md-nav__link">
+      1. Kiến trúc trong Keystone ( bổ sung )
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/4. Config-Keystone/" title="4. Config Keystone" class="md-nav__link">
+      4. Config Keystone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/5. Keystone-Openstack-CLI/" title="Làm việc với Keystone qua CLI" class="md-nav__link">
+      Làm việc với Keystone qua CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/6. Keystone-CURL/" title="1. Application Credentials" class="md-nav__link">
+      1. Application Credentials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Keystone/7. Token-Keystone/" title="Tìm hiểu Token trong Openstack" class="md-nav__link">
+      Tìm hiểu Token trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-11" type="checkbox" id="nav-2-11" checked>
+    
+    <label class="md-nav__link" for="nav-2-11">
+      Neutron
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="12">
+      <label class="md-nav__title" for="nav-2-11">
+        Neutron
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1. Introduction-neutron/" title="Openstack networking - Neutron" class="md-nav__link">
+      Openstack networking - Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../10. OPS-Packet-Provider/" title="10. OPS Packet Provider" class="md-nav__link">
+      10. OPS Packet Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../11. VXLAN-Tunnel/" title="11. VXLAN Tunnel" class="md-nav__link">
+      11. VXLAN Tunnel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../12. VXLAN-Tunnel-Host-pair-OPS/" title="12. VXLAN Tunnel Host pair OPS" class="md-nav__link">
+      12. VXLAN Tunnel Host pair OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2. Install Neutron Linux Bridge/" title="Cài đặt Neutron  -- Linux Bridge" class="md-nav__link">
+      Cài đặt Neutron  -- Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.1 . OVS-Self-Services/" title="2.1 . OVS Self Services" class="md-nav__link">
+      2.1 . OVS Self Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.2. OVS Self-Service-&-Provider/" title="2.2. OVS Self Service & Provider" class="md-nav__link">
+      2.2. OVS Self Service & Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3. Neutron-CLI/" title="Làm việc với Neutron" class="md-nav__link">
+      Làm việc với Neutron
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4. Neutron-Namespace-Agent/" title="TÌm hiểu Namepsace , DHCP, Agent trong OPS" class="md-nav__link">
+      TÌm hiểu Namepsace , DHCP, Agent trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.  Packet-Walkthrough-Linux-Bridge/" title="Neutron Traffic Flow trong Linux Bridge" class="md-nav__link">
+      Neutron Traffic Flow trong Linux Bridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-nav__link">
+      Tìm hiểu bonding trong Centos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="7. VXLAN" class="md-nav__link md-nav__link--active">
+      7. VXLAN
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../8. OpenvSwitch-OPS/" title="Tìm hiểu OVS trong OPS" class="md-nav__link">
+      Tìm hiểu OVS trong OPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../9. OPS-Packet-Self-Service/" title="Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack" class="md-nav__link">
+      Tìm hiểu flow packet khi sử dụng OpenvSwitch trong Openstack
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-12" type="checkbox" id="nav-2-12">
+    
+    <label class="md-nav__link" for="nav-2-12">
+      Nova
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="13">
+      <label class="md-nav__title" for="nav-2-12">
+        Nova
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/1.Introduction-nova/" title="1.  Openstack Compute -Nova" class="md-nav__link">
+      1.  Openstack Compute -Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/2. Install-nova/" title="Cài đặt Nova - Openstack Compute" class="md-nav__link">
+      Cài đặt Nova - Openstack Compute
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/3.Nova-Client&Curl/" title="Sử dụng Nova" class="md-nav__link">
+      Sử dụng Nova
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/4. Nova-Instance-Work-flow/" title="4. Nova Instance Work flow" class="md-nav__link">
+      4. Nova Instance Work flow
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/5. Debug/" title="5. Debug" class="md-nav__link">
+      5. Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Nova/6. Config-section/" title="Một số tùy chọn khác trong nova.conf" class="md-nav__link">
+      Một số tùy chọn khác trong nova.conf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h2 id="tim_hieu_vxlan">Tìm hiểu VXLAN<a class="headerlink" href="#tim_hieu_vxlan" title="Permanent link">&para;</a></h2>
+<h2 id="1_van_e_voi_vlan">1. Vấn đề với VLAN<a class="headerlink" href="#1_van_e_voi_vlan" title="Permanent link">&para;</a></h2>
+<ul>
+<li>VLAN được sử dụng chủ yếu để cô lập dữ liệu trên layer 2. Các môi trường mạng lớn yêu cầu mở rộng khả năng cô lập lớn hơn khả năng đáp ứng của VLAN <ul>
+<li>Hiện tại VLAN chỉ hỗ trợ tối đa tối đa 12 bit VLAN_ID, bị giới hạn trong 4096 VLAN_ID</li>
+<li>Sử dụng STP cung cấp một topology L2 chống loop và cắt bỏ đi hầu hết những liên kết dư lừa. </li>
+<li>Vấn đề lưu trữ MAC trên các swtich khi số lượng máy ảo quá nhiều, có thể dẫn đến trùng MAC Adress</li>
+</ul>
+</li>
+</ul>
+<h2 id="2_vxlan_la_gi">2. VXLAN là gì ?<a class="headerlink" href="#2_vxlan_la_gi" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>VXLAN (Virtual eXtensible LANs)</strong>: đây là công nghệ cung cấp dịch vụ để kết nối Ethernet tới các thiết bị cuối như VLAN ngày nay, nhưng có nhiều tính năng mở rộng hơn. So sánh với VLAN, VXLAN được mở rộng hơn về quy mô và khả năng triển khai chúng.</p>
+</li>
+<li>
+<p>Trong chuẩn định nghĩa cho VLAN 802.1q chỉ dành ra 12 bit để đánh VLAN-ID. VXLAN sử dụng 24 bit để đánh địa chỉ VLAN_ID. Nghĩa là nó sẽ hỗ trợ không gian địa chỉ VXLAN_ID lên tới 4 lần so với VLAN, tức là khoảng hơn 16 triệu. Điều này sẽ cung cấp đủ không gian để triển khai các quy mô mạng trong vài năm tới.</p>
+</li>
+<li>
+<p>VXLAN sử dụng IP (cả unicast và multicast) như phương tiện truyền. Sự phổ biến của mạng IP và các thiết bị cho phép đầu cuối sẽ cho phép khả năng mở rộng vượt trội tiến xa hơn rất nhiều so với VLAN sử dụng 802.1q hiện nay. Không gì có thể phủ nhận rằng các công nghệ khác có thể mở rộng được phạm vi của VLAN, nhưng không có gì có thể triển khai phổ biến như mạng IP.</p>
+</li>
+</ul>
+<h2 id="3_cac_khai_niem_trong_vxlan">3. Các khái niệm trong VXLAN ?<a class="headerlink" href="#3_cac_khai_niem_trong_vxlan" title="Permanent link">&para;</a></h2>
+<h3 id="131_vni">1.3.1.   VNI<a class="headerlink" href="#131_vni" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>VXLAN hoạt động trên cơ sở hạ tầng mạng hiện có và cung cấp một phương tiện để <em>"kéo dài"</em> một mạng lớp 2. Tóm lại, VXLAN là một mạng lớp 2 overlay trên mạng lớp 3. Mỗi lớp mạng như vậy được gọi là VXLAN segment. Chỉ các máy ảo trong cùng VXLAN segment mới có thể giao tiếp với nhau. Mỗi VXLAN segment được xác định thông qua ID kích thước 24 bit, gọi là <strong>VXLAN Network Identifier (VNI)</strong>. Điều này cho phép tối đa 16 triệu các VXLAN segment cùng tồn tại trong cùng một domain.</p>
+</li>
+<li>
+<p>VNI xác định phạm vi của inner MAC frame sinh ra bởi máy ảo VM. Do đó, bạn có thể overlapping địa chỉ MAC thông qua segment như không bị lẫn lộn các lưu lượng bởi chúng đã bị cô lập  bởi VNI khác nhau. VNI nằm trong header được đóng gói với innere MAC sinh ra bởi VM. </p>
+</li>
+</ul>
+<p><img alt="" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.1.png" />  </p>
+<h3 id="132_encapsulation_va_vtep">1.3.2.   Encapsulation và VTEP<a class="headerlink" href="#132_encapsulation_va_vtep" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>VXLAN là công nghệ overlay qua lớp mạng. Overlay Network có thể được định nghĩa như là một mạng logic mà được tạo trên một nền tảng mạng vật lý đã có sẵn.
+VXLAN tạo một mạng vật lý layer 2 trên lớp mạng IP. Dưới đây là 2 từ khóa được dùng trong công nghệ overlay network:</p>
+</li>
+<li>
+<p><strong>Encapsulate</strong>: Đóng gói những gói tin ethernet thông thường trong một header mới. Ví dụ: trong công nghệ overlay IPSec VPN, đóng gói gói tin IP thông thường vào một IP header khác. </p>
+</li>
+<li>
+<p><strong>VTEP</strong>: Việc liên lạc được thiết lập giữa 2 đầu tunnel end points (đường ống).</p>
+</li>
+<li>
+<p>Khi bạn áp dụng vào với công nghệ overlay trong VXLAN, bạn sẽ thấy VXLAN sẽ đóng gói một frame MAC thông thường vào một UDP header. Và tất cả các host tham gia vào VXLAN thì hoạt động như một tunnel end points. Chúng gọi là Virtual Tunnel Endpoints (VTEPs)</p>
+</li>
+<li>
+<p>VTEPs là các node mà cung cấp các chức năng Encalsulation và De-encapsulation. Chúng biết rõ được làm thế nào mà VTEPs encap và de-encap lưu lượng từ bất kì máy ảo kết nối với một mạng VXLAN dựa trên mạng vật lý layer 2. </p>
+</li>
+</ul>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.2.png" /></p>
+<ul>
+<li>
+<p>VXLAN học tất cả các địa chỉ MAC của máy ảo và việc kết nối nó tới VTEP IP thì được thực hiện thông qua sự hỗ trợ của mạng vật lý. Một trong những giao thức được sử dụng trong mạng vật lý là IP multicast. VXLAN sử dụng giao thức của IP multicast để cư trú trong bảng forwarding trong VTEP.</p>
+</li>
+<li>
+<p>Do sự đóng gói (encapsulation) này, VXLAN có thể được gọi là thiết lập đường hầm (tunneling) để kéo dài mạng lớp 2 thông qua lớp 3. Điểm cuối các tunnel này - (VXLAN Tunnel End Point hoặc VTEP) nằm trong  hypervisor trên server máy chủ của các VM. Do đó, VNI và VXLAN liên quan tới các khái niệm đóng gói header tunnel được thực hiện bởi VTEP - và trong suốt với VM. </p>
+</li>
+<li>
+<p><strong><em>Lưu ý</em></strong>: VTEP có thể nằm trên switch hoặc server vật lý và có thể được thực hiện trên phần mềm hoặc phần cứng. </p>
+</li>
+</ul>
+<h3 id="133_vxlan_frame_format">1.3.3.   VXLAN frame format<a class="headerlink" href="#133_vxlan_frame_format" title="Permanent link">&para;</a></h3>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.3.png" /></p>
+<p>Frame Ethernet thông thường bao gồm địa chỉ MAC nguồn, MAC đích, Ethernet type và thêm phần VLAN_ID (802.1q) nếu có. Đây là frame được đóng gói sử dụng VXLAN, thêm các header sau: </p>
+<ul>
+<li>
+<p><strong>VXLAN header</strong>: 8 byte bao gồm các trường quan trọng sau: </p>
+</li>
+<li>
+<p><strong><em>Flags</em></strong>: 8 but, trong đó bit thứ 5 (I flag) được thiết lập là 1 để chỉ ra rằng đó là một frame có VNI có giá trị. 7 bit còn lại dùng dữ trữ được thiết lập là 0 hết. </p>
+</li>
+<li>
+<p><strong><em>VNI</em></strong>: 24 bit cung cấp định danh duy nhất cho VXLAN segment. Các VM trong các VXLAN khác nhau không thể giao tiếp với nhau. 24 bit VNI cung cấp lên tới hơn 16 triệu VXLAN segment trong một vùng quản trị mạng. </p>
+</li>
+<li>
+<p><strong>Outer UDP Header</strong>: port nguồn của Outer UDP được gán tự động và sinh ra bởi VTEP và port đích thông thường được sử dụng là port 4789 hay được sử dụng (có thể chọn port khác).</p>
+</li>
+<li>
+<p><strong>Outer IP Header</strong>: Cung cấp địa chỉ IP nguồn của VTEP nguồn kết nối với VM bên trong. Địa chỉ IP outer đích là địa chỉ IP của VTEP nhận frame.</p>
+</li>
+<li>
+<p><strong>Outer Ethernet Header</strong>: cung cấp địa chỉ MAC nguồn của VTEP có khung frame ban đầu. Địa chỉ MAC đích là địa chỉ của hop tiếp theo được định tuyến bởi VTEP. Outer Ethernet header có thể được gắn tag theo chuẩn 802.1q trong quá trình vận chuyển trong mạng.</p>
+</li>
+</ul>
+<p><a name = '2'></a></p>
+<h1 id="2_cach_hoat_ong_cua_vxlan">2. Cách hoạt động của VXLAN<a class="headerlink" href="#2_cach_hoat_ong_cua_vxlan" title="Permanent link">&para;</a></h1>
+<p>VXLAN hoạt động dựa trên việc gửi các frame thông qua giao thức IP Multicast. </p>
+<p>Trong quá trình cấu hình VXLAN, cần cấp phát địa chỉ IP multicast để gán với VXLAN sẽ tạo. Mỗi địa chỉ IP multicast sẽ đại diện cho một VXLAN. </p>
+<p>Sau đây sẽ tìm hiểu hoạt động chi tiết cách frame đi qua VTEP và đi qua mạng vật lý trong VXLAN triển khai trên một mạng logic với mô hình như sau:</p>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.4.png" /> </p>
+<h2 id="21_vm_gui_request_tham_gia_vao_group_multicast">2.1.  VM gửi request tham gia vào group multicast<a class="headerlink" href="#21_vm_gui_request_tham_gia_vao_group_multicast" title="Permanent link">&para;</a></h2>
+<p>Giả sử một mạng logic trên 4 host như hình. Topo mạng vật lý cung cấp một VLAN 2000 để vận chuyển các lưu lượng VXLAN. Trong trường hợp này, chỉ IGMP snooping và IGMP querier được cấu hình trên mạng vật lý. Một vài bước sẽ được thực hiện trước khi các thiết bị trên mạng vật lý có thể xử lý các gói tin multicast. </p>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.5.png" /></p>
+<ul>
+<li>
+<p>IGMP Packet flows:</p>
+</li>
+<li>
+<p>1) Máy ảo VM (MAC1) trên Host 1 được kết nối tới một mạng logical layer 2 mà có VXLAN 5001 ở đó. </p>
+</li>
+<li>
+<p>2) VTEP trên Host 1 gửi bản tin IGMP để join vào mạng và join vào nhóm multicast 239.1.1.100 để kết nối tới VXLAN 5001. </p>
+</li>
+<li>
+<p>3) Tương tự, máy ảo VM (MAC2) trên Host 4 được kết nối tới mạng mà có VXLAN 5001.</p>
+</li>
+<li>
+<p>4) VTEP trên Host 4 gửi bản tin IGMP join vào mạng và join vào nhóm multicast 239.1.1.100 để kết nối tới VXLAN 5001. </p>
+</li>
+</ul>
+<p>Host 2 và Host 3 VTEP không join nhóm multicast bởi vì chúng không có máy ảo chạy trên nó và cần kết nối tới VXLAN 5001. Chỉ VTEP nào cần tham gia vào nhóm multicast mới gửi request join vào nhóm </p>
+<p><img alt="img" src="../images/4.6.png" /></p>
+<ul>
+<li>
+<p>Multicast Packet flow:</p>
+</li>
+<li>
+<p>1) Máy ảo VM (MAC1) trên Host 1 sinh ra một frame broadcast.</p>
+</li>
+<li>
+<p>2) VTEP trên Host 1 đóng gói frame broadcast này vào một UDP header với IP đích là địa chỉ IP multicast 239.1.1.100</p>
+</li>
+<li>
+<p>3) Mạng vật lý sẽ chuyển các gói tin này tới Host 4 VTEP, vì nó đã join vào nhóm multicast 239.1.1.100. Host 2 và 3 VTEP sẽ không nhận được frame broadcast này.</p>
+</li>
+<li>
+<p>4) VTEP trên Host 4 đầu tiên đối chiếu header được đóng gói, nếu 24 bit VNI trùng với ID của VXLAN. Nó sẽ decapsulated lớp gói được VTEP host 1 đóng vào và chuyển tới máy ảo VM đích (MAC2).</p>
+</li>
+</ul>
+<h2 id="22_vtep_hoc_va_tao_bang_forwarding">2.2.  VTEP học và tạo bảng forwarding<a class="headerlink" href="#22_vtep_hoc_va_tao_bang_forwarding" title="Permanent link">&para;</a></h2>
+<p>Ban đầu, mỗi VTEP sau khi đã join vào nhóm IP multicast đều có một bảng forwarding table như sau: </p>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.6.png" /></p>
+<p>Các bước sau sẽ được thực hiện để VTEP học và ghi vào bảng forwarding table: </p>
+<ul>
+<li>Đầu tiên, một bản tin ARP request được gửi từ VM MAC1 để tìm địa chỉ MAC của máy ảo đích nó cần gửi tin đến VM MAC2 trên Host 2. ARP request là bản tin broadcast. </li>
+</ul>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.8.png" /></p>
+<p>Host 2 VTEP – Forwarding table entry</p>
+<ul>
+<li>
+<p>1) VM trên Host 1 gửi bản tin ARP request với địa chỉ MAC đích là “FFFFFFFFFFF”</p>
+</li>
+<li>
+<p>2) VTEP trên Host 1 đóng gói vào frame Ethernet broadcast vào một UDP header với địa chỉ IP đích multicast và địa chỉ IP nguồn 10.20.10.10 của VTEP.</p>
+</li>
+<li>
+<p>3) Mạng vật lý sẽ chuyển gói tin multicast tới các host join vào nhóm IP multicast  “239.1.1.10”.</p>
+</li>
+<li>
+<p>4) VTEP trên Host 2 nhận được gói tin đã đóng gói. Dựa vào outer và inner header, nó sẽ tạo một entry trong bảng forwarding chỉ ra mapping giữa MAC của máy VM MAC1 ứng với VTEP nguồn và địa chỉ IP  của nó. VTEP cũng kiểm tra VNI của gói tin để quyết định sẽ chuyển tiếp gói tin vào trong cho máy ảo VM bên trong nó hay không.</p>
+</li>
+<li>
+<p>5) Gói tin được de-encapsulated và chuyển vào tới VM mà được kết nối tới VXLAN 5001.</p>
+</li>
+<li>
+<p>Hình sau minh họa cách mà VTEP tìm kiếm thông tin trong forwarding table để gửi unicast trả lời lại từ VM từ VTEP 2:</p>
+</li>
+</ul>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.9.png" /></p>
+<ul>
+<li>
+<p>1) Máy ảo VM MAC2 trên Host 2 đáp trả lại bản tin ARP request bằng cách gửi unicast lại gói tin với địa chỉ MAC đích là địa chỉ MAC1</p>
+</li>
+<li>
+<p>2) Sau khi nhận được gói tin unicast đó, VTEP trên Host 2 thực hiện tìm kiếm thông tin trong bảng forwarding table và lấy được thông tin ứng với MAC đích là MAC 1. VTEP sẽ biết rằng phải chuyển gói tin tới máy ảo VM MAC 1 bằng cách gửi gói tin tới VTEP có địa chỉ “10.20.10.10”.</p>
+</li>
+<li>
+<p>3) VTEP tạo bản tin unicast với địa chỉ đích là  “10.20.10.10” và gửi nó đi. </p>
+</li>
+<li>
+<p>Trên Host 1, VTEP sẽ nhận được gói tin unicast và cũng học được vị trí của VM MAC2 như hình sau: </p>
+</li>
+</ul>
+<p><img alt="img" src="https://github.com/hocchudong/thuctap012017/raw/master/TamNT/Virtualization/images/4.10.png" /></p>
+<p>Host 1 VTEP – Forwarding table entry</p>
+<ul>
+<li>
+<p>1) Gói tin được chuyển tới Host 1</p>
+</li>
+<li>
+<p>2) VTEP trên Host 1 nhận được gói tin. Dựa trên outer và inner header, nó tạo một entry trong bảng forwarding ánh xạ địa chỉ MAC 2 và VTEP trên Host 2. VTEP cũng check lại VNI và quyết định gửi frame vào các VM bên trong. </p>
+</li>
+<li>
+<p>3) Gói tin được de-encapsulated và chuyển tới chính xác VM có MAC đích trùng và nằm trong VXLAN 5001.</p>
+</li>
+</ul>
+<p>Các bước trên là quá trình hoạt động trong VXLAN.</p>
+<p>Tham khảo thêm mô hình multiple VXLAN sau: https://blogs.vmware.com/vsphere/2013/05/vxlan-series-multiple-logical-networks-mapped-to-one-multicast-group-address-part-4.html</p>
+<h2 id="4_tham_khao_them">4. Tham khảo thêm<a class="headerlink" href="#4_tham_khao_them" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>ovs-vsctl add-port br0 vxlan1 -- set interface vxlan1 type=vxlan options:remote_ip=192.168.30.139 options:key=flow options:dst_port=4789</p>
+</li>
+<li>
+<p>ovs-appctl ofproto/trace br-tun in_port=vxlan-c0a84583</p>
+</li>
+<li>
+<p>ip link add vxlan0 type vxlan id 38 group 239.30.1.2 dev ens224 dstport 4789</p>
+</li>
+</ol>
+<p>4.: https://github.com/hocchudong/thuctap012017/blob/master/TamNT/Virtualization/docs/4.Tim_hieu_VXLAN.md</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../6. Bonding/" title="Tìm hiểu bonding trong Centos" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Tìm hiểu bonding trong Centos
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../8. OpenvSwitch-OPS/" title="Tìm hiểu OVS trong OPS" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Tìm hiểu OVS trong OPS
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            nguyenhungsync
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.9e1f3b71.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
